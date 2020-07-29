@@ -4,7 +4,7 @@ import { FAB, Portal, Provider } from 'react-native-paper';
 const FloatingButton = () => {
   const [state, setState] = React.useState({ open: false });
 
-  const onStateChange = ({ open }) => setState({ open });
+  const onStateChange = ({ open }: { open: boolean }) => setState({ open });
 
   const { open } = state;
 

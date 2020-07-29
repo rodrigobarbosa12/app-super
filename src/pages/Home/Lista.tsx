@@ -5,8 +5,15 @@ import {
 } from 'react-native';
 import styles from './styles';
 import CardGrupo from './CardGrupo';
+import { Grupo } from './type';
 
-const Lista = ({ grupos, buscarGrupos, alertRemoveGrupo }) => (
+type Props = {
+  grupos: Grupo[],
+  buscarGrupos: () => void,
+  alertRemoveGrupo: (gruposId: string) => void
+}
+
+const Lista = ({ grupos, buscarGrupos, alertRemoveGrupo }: Props) => (
   <>
     <Text style={styles.title}>Grupos</Text>
     <Text style={styles.description}>Escolha um dos grupos</Text>

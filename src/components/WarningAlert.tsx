@@ -2,16 +2,25 @@ import React from 'react';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import colors from '../utils/colors';
 
+type Props = {
+  visibilit?: boolean,
+  title?: string,
+  message?: string,
+  onConfirm?: () => void,
+  onCalcel?: () => void,
+  confirmText?: string,
+  cancelText?: string,
+}
+
 const WarningAlert = ({
   visibilit,
-  setErrors,
   title,
   message,
   onConfirm,
   onCalcel,
   confirmText,
   cancelText,
-}) => (
+}: Props) => (
   <AwesomeAlert
     show={visibilit}
     title={title}
@@ -34,5 +43,15 @@ const WarningAlert = ({
     }}
   />
 );
+
+WarningAlert.defaultProps = {
+  visibilit: false,
+  title: '',
+  message: '',
+  onConfirm: undefined,
+  onCalcel: undefined,
+  confirmText: undefined,
+  cancelText: undefined,
+}
 
 export default WarningAlert;

@@ -2,7 +2,12 @@ import React from 'react';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { themeDefault } from '../utils/colors';
 
-const AlertWait = ({ show, showProgress }) => (
+type Props = {
+  show: boolean,
+  showProgress: () => void
+}
+
+const AlertWait = ({ show, showProgress }: Props) => (
   <AwesomeAlert
     show={show}
     showProgress={showProgress}

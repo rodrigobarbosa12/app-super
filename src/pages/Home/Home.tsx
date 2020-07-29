@@ -7,16 +7,21 @@ import WarningAlert from '../../components/WarningAlert';
 import identity from '../../utils/identity';
 import Lista from './Lista';
 import styles from './styles';
+import { Grupo } from './type';
 
 const Home = () => {
-  const [grupos, setGrupos] = useState([]);
-  const [visibilit, setVisibilit] = useState(false);
-  const [grupoId, setGrupoId] = useState('');
+  const [grupos, setGrupos] = useState<Grupo[]>([]);
+  const [visibilit, setVisibilit] = useState<boolean>(false);
+  const [grupoId, setGrupoId] = useState<string>('');
 
   const buscarGrupos = async () => {
-    const { id } = await identity();
-    const { data } = await api.getGrupos(id);
-    setGrupos(data);
+    try {
+      const { id } = await identity();
+      const { data } = await api.getGrupos(id);
+      setGrupos(data);
+    } catch (error) {
+      console.warn(error);
+    }
   };
 
   const removeGrupo = async () => {
@@ -29,7 +34,7 @@ const Home = () => {
     }
   };
 
-  const alertRemoveGrupo = (gruposId) => {
+  const alertRemoveGrupo = (gruposId: string) => {
     setGrupoId(gruposId);
     setVisibilit(true);
   };

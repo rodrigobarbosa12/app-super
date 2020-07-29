@@ -11,8 +11,14 @@ import Divider from '../../components/Divider';
 import toRouteAuth from '../../utils/to-route-auth';
 import colors from '../../utils/colors';
 import styles from './styles';
+import { Grupo } from './type';
 
-const CardGrupo = ({ grupo, alertRemoveGrupo }) => (
+type Props = {
+  grupo: Grupo,
+  alertRemoveGrupo: (grupoId: string) => void
+};
+
+const CardGrupo = ({ grupo, alertRemoveGrupo }: Props) => (
   <View style={styles.item}>
     <TouchableOpacity
       style={styles.buttonTrash}

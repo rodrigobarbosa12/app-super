@@ -5,13 +5,21 @@ import {
 } from 'react-native';
 import styles from '../Home/styles';
 import CardItem from './CardItem';
+import { Item } from './type';
+
+type Props = {
+  titulo: string,
+  itens: Item[],
+  buscarItens: () => void,
+  removeItem: (itemId: string) => void,
+}
 
 const Lista = ({
   titulo,
   itens,
   buscarItens,
   removeItem,
-}) => (
+}: Props) => (
   <>
     <Text style={styles.title}>{titulo}</Text>
     <Text style={styles.description}>Use sua lista como quiser</Text>

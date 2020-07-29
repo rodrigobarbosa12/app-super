@@ -4,9 +4,15 @@ import api from '../../utils/api';
 import StatusBar from '../../components/StatusBar';
 import Lista from './Lista';
 import styles from '../Home/styles';
+import { Item } from './type';
 
-const Grupo = ({ gruposId, grupoNome }) => {
-  const [itens, setItens] = useState();
+type Props = {
+  gruposId: string,
+  grupoNome: string,
+}
+
+const Grupo = ({ gruposId, grupoNome }: Props) => {
+  const [itens, setItens] = useState<Item[]>([]);
 
   const buscarItens = async () => {
     const { data } = await api.getItens(gruposId);
@@ -14,7 +20,7 @@ const Grupo = ({ gruposId, grupoNome }) => {
     setItens(data);
   };
 
-  const removeItem = async (itemId) => {
+  const removeItem = async (itemId: string) => {
     try {
       await api.removeIten(itemId);
       setItens(itens.filter((item) => item.id !== itemId));

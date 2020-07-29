@@ -8,8 +8,14 @@ import {
 import { Feather } from '@expo/vector-icons';
 import colors from '../../utils/colors';
 import styles from '../Home/styles';
+import { Item } from './type';
 
-const CardItem = ({ item, removeItem }) => (
+type Props = {
+  item: Item,
+  removeItem: (itemId: string) => void
+}
+
+const CardItem = ({ item, removeItem }: Props) => (
   <View style={styles.item}>
     <TouchableOpacity
       style={styles.buttonTrash}

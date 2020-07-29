@@ -19,6 +19,18 @@ import LinkCadastroUsuario from './LinkCadastroUsuario';
 import LinkEsqueciSenha from './LinkEsqueciSenha';
 import toRouteAuth from '../../utils/to-route-auth';
 
+type Props = {
+  handleSubmit: () => void,
+  setFieldValue: Function,
+  isSubmitting: () => void,
+  setErrors: () => void,
+  errors: {
+    email: string,
+    senha: string,
+    message: string
+  },
+}
+
 const styles = StyleSheet.create({
   input: {
     backgroundColor: '#FFF',
@@ -49,7 +61,7 @@ const SignIn = ({
   isSubmitting,
   setErrors,
   errors,
-}) => (
+}: Props) => (
   <>
     <View style={styles.title}>
       <Text style={{
@@ -69,7 +81,7 @@ const SignIn = ({
         autoCapitalize="none"
         selectionColor="#000"
         autoCorrect={false}
-        error={errors.email}
+        error={!!errors.email}
         label={errors.email && errors.email}
         onChangeText={(email) => setFieldValue('email', email)}
       />
@@ -80,7 +92,7 @@ const SignIn = ({
         secureTextEntry
         selectionColor="#000"
         autoCorrect={false}
-        error={errors.senha}
+        error={!!errors.senha}
         label={errors.senha && errors.senha}
         onChangeText={(password) => setFieldValue('senha', password)}
       />
@@ -102,7 +114,6 @@ const SignIn = ({
 
     <WarningAlert
       visibilit={!!errors.message}
-      setErrors={setErrors}
       message={errors.message}
     />
 
@@ -125,7 +136,6 @@ export default withFormik({
   }),
 
   validateOnChange: false,
-  validateField: false,
 
   handleSubmit: async (values, { setSubmitting, setErrors }) => {
     try {

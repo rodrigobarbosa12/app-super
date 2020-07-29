@@ -5,6 +5,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 Icon.loadFont();
 
+type Props = {
+  handleSubmit: () => void
+};
+
 const styles = StyleSheet.create({
   button: {
     padding: 15,
@@ -21,7 +25,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Actions = ({ handleSubmit }) => (
+const Actions = ({ handleSubmit }: Props) => (
   <View>
     <TouchableOpacity
       onPress={handleSubmit}
