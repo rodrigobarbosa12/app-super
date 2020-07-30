@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 const LinkCadastroUsuario = () => (
   <TouchableOpacity
     style={styles.detailsButton}
-    onPress={() => Actions.CadastroStudio()}
+    onPress={() => Actions.SingUp()}
   >
     <Text style={styles.detailsButtonText}>
       Criar uma nova conta

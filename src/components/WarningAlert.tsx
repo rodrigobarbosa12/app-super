@@ -3,9 +3,11 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 import colors from '../utils/colors';
 
 type Props = {
-  visibilit?: boolean,
+  show?: boolean,
   title?: string,
   message?: string,
+  showCancelButton: boolean,
+  showConfirmButton: boolean,
   onConfirm?: () => void,
   onCalcel?: () => void,
   confirmText?: string,
@@ -13,21 +15,23 @@ type Props = {
 }
 
 const WarningAlert = ({
-  visibilit,
+  show,
   title,
   message,
+  showCancelButton,
+  showConfirmButton,
   onConfirm,
   onCalcel,
   confirmText,
   cancelText,
 }: Props) => (
   <AwesomeAlert
-    show={visibilit}
+    show={show}
     title={title}
     message={message}
     closeOnTouchOutside={false}
-    showCancelButton
-    showConfirmButton
+    showCancelButton={showCancelButton}
+    showConfirmButton={showConfirmButton}
     cancelText={cancelText}
     confirmText={confirmText}
     confirmButtonColor={colors.matteBlue}
@@ -45,9 +49,11 @@ const WarningAlert = ({
 );
 
 WarningAlert.defaultProps = {
-  visibilit: false,
+  show: false,
   title: '',
   message: '',
+  showCancelButton: false,
+  showConfirmButton: false,
   onConfirm: undefined,
   onCalcel: undefined,
   confirmText: undefined,

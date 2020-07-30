@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -22,8 +22,8 @@ import toRouteAuth from '../../utils/to-route-auth';
 type Props = {
   handleSubmit: () => void,
   setFieldValue: Function,
-  isSubmitting: () => void,
-  setErrors: () => void,
+  isSubmitting: boolean,
+  setErrors: ({}) => void,
   errors: {
     email: string,
     senha: string,
@@ -113,8 +113,11 @@ const SignIn = ({
     </View>
 
     <WarningAlert
-      visibilit={!!errors.message}
+      show={!!errors.message}
       message={errors.message}
+      onConfirm={() => setErrors({})}
+      showConfirmButton
+      confirmText="Ok"
     />
 
     <AlertWait

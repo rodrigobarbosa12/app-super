@@ -4,7 +4,7 @@ import { themeDefault } from '../utils/colors';
 
 type Props = {
   show: boolean,
-  showProgress: () => void
+  showProgress: boolean
 }
 
 const AlertWait = ({ show, showProgress }: Props) => (
