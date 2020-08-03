@@ -1,19 +1,37 @@
 import React from 'react';
 import AwesomeAlert from 'react-native-awesome-alerts';
-import { themeDefault } from '../utils/colors';
+import colors from '../utils/colors';
 
 type Props = {
   show: boolean,
-  showProgress: boolean
+  showProgress?: boolean,
+  title: string,
+  message?: string,
+  showConfirmButton: boolean,
+  onConfirm: () => void,
+  confirmText: string,
 }
 
-const AlertWait = ({ show, showProgress }: Props) => (
+const AlertWait = ({
+    show,
+    showProgress,
+    title,
+    message,
+    showConfirmButton,
+    onConfirm,
+    confirmText,
+  }: Props) => (
   <AwesomeAlert
     show={show}
     showProgress={showProgress}
-    title="Aguarde..."
-    progressColor={themeDefault.purple}
+    title={title}
+    message={message}
+    progressColor={colors.purple}
     progressSize={30}
+    showConfirmButton={showConfirmButton}
+    confirmButtonColor={colors.success}
+    onConfirmPressed={onConfirm}
+    confirmText={confirmText}
     contentContainerStyle={{ zIndex: 1, position: 'relative' }}
     alertContainerStyle={{
       top: 0,
@@ -23,5 +41,13 @@ const AlertWait = ({ show, showProgress }: Props) => (
     }}
   />
 );
+
+AlertWait.defaultProps = {
+  showProgress: false,
+  mensagem: '',
+  showConfirmButton: false,
+  onConfirm: undefined,
+  confirmText: '',
+};
 
 export default AlertWait;

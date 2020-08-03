@@ -123,6 +123,7 @@ const SignIn = ({
     <AlertWait
       show={isSubmitting}
       showProgress
+      title="Aguarde..."
     />
   </>
 );

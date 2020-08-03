@@ -17,6 +17,7 @@ const StatusBar = ({ title, subtitle, children }: Props) => (
     />
     <Appbar.Content
       title={title}
+      color="#FFF"
       subtitle={subtitle}
     />
     {children}
