@@ -34,7 +34,8 @@ export default StyleSheet.create({
   },
   itemsList: {
     marginTop: 32,
-    height: 600,
+    height: 400,
+    maxHeight: 400,
   },
   item: {
     padding: 24,

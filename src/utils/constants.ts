@@ -1,5 +1,5 @@
-const API_WORLDSTUDIO = 'http://192.168.0.47:3333'; // MAC
-// const API_WORLDSTUDIO = 'http://192.168.15.43:3333'; // Linux
+// const API_WORLDSTUDIO = 'http://192.168.0.47:3333'; // MAC
+const API_WORLDSTUDIO = 'http://192.168.0.40:3333'; // Linux
 
 export const TOKEN_STORAGE = '@apiSuper:token';
 

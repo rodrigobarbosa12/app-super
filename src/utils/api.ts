@@ -7,8 +7,10 @@ const get = async (rota: string, params = {}) => xhr.get(rota, { params, headers
 const deletar = async (rota: string) => xhr
   .delete(rota, { headers: await headersApi() });
 
-  const login = (params: Object) => post('/login', params);
-  const singUp = (params: Object) => post('/cadastro', params);
+const login = (params: Object) => post('/login', params);
+const singUp = (params: Object) => post('/cadastro', params);
+
+const novoGrupo = (params: Object) => post('/novo-grupo', params);
 
 const getItens = (gruposId: string) => get(`/item/${gruposId}`);
 const getGrupos = (usuarioId: string) => get(`/grupos/${usuarioId}`);
@@ -18,6 +20,7 @@ const removeIten = (grupoId: string) => deletar(`/remove-item/${grupoId}`);
 export default {
   login,
   singUp,
+  novoGrupo,
   getGrupos,
   getItens,
   removeGrupo,

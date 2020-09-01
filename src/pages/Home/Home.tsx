@@ -55,11 +55,15 @@ const Home = () => {
           />
         </View>
       </View>
-      <FloatingButton />
+      <FloatingButton
+        buscarGrupos={buscarGrupos}
+      />
       <WarningAlert
         title="Atenção"
         message="Todos os itens serão excluidos"
-        visibilit={visibilit}
+        show={visibilit}
+        showConfirmButton
+        showCancelButton
         onConfirm={removeGrupo}
         onCalcel={() => setVisibilit(false)}
         cancelText="Depois"
