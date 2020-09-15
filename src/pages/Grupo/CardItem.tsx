@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+import moment from 'moment';
 import { Feather } from '@expo/vector-icons';
 import colors from '../../utils/colors';
 import styles from '../Home/styles';
@@ -17,6 +18,7 @@ type Props = {
 
 const CardItem = ({ item, removeItem }: Props) => (
   <View style={styles.item}>
+    <Text style={styles.cardGrupoDate}>{moment(item.data).format('DD/MM/YYYY H:mm')}</Text>
     <TouchableOpacity
       style={styles.buttonTrash}
       onPress={() => removeItem(item.id)}
@@ -30,7 +32,6 @@ const CardItem = ({ item, removeItem }: Props) => (
     <Text style={styles.itemValue}>{item.descricao}</Text>
 
     <View style={{
-      // flex: 1,
       top: 5,
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -45,10 +46,10 @@ const CardItem = ({ item, removeItem }: Props) => (
       </Text>
       <Text style={styles.itemValueRow}>
         {
-                  Intl
-                    .NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
-                    .format(item.valor)
-              }
+          Intl
+            .NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+            .format(item.valor)
+        }
       </Text>
     </View>
   </View>

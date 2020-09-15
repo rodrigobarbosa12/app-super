@@ -3,5 +3,6 @@ export type Item = {
     nome: string,
     descricao: string,
     quantidade: number,
-    valor: number
+    valor: number,
+    data: string
 };

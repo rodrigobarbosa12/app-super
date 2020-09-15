@@ -49,7 +49,12 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     paddingBottom: 15,
   },
+  cardGrupoDate: {
+    fontSize: 11,
+    color: '#41414d',
+  },
   itemProperty: {
+    // marginRight: 20,
     fontSize: 14,
     color: '#41414d',
     fontWeight: 'bold',
@@ -62,7 +67,7 @@ export default StyleSheet.create({
   },
   itemValueRow: {
     // padding: 10,
-    marginLeft: -60,
+    marginLeft: -40,
     fontSize: 15,
     marginBottom: 24,
     color: '#737380',

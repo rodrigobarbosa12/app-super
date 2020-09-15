@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+import moment from 'moment';
 import { Feather } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
 import Divider from '../../components/Divider';
@@ -20,6 +21,7 @@ type Props = {
 
 const CardGrupo = ({ grupo, alertRemoveGrupo }: Props) => (
   <View style={styles.item}>
+    <Text style={styles.cardGrupoDate}>{moment(grupo.data).format('DD/MM/YYYY H:mm')}</Text>
     <TouchableOpacity
       style={styles.buttonTrash}
       onPress={() => alertRemoveGrupo(grupo.id)}
