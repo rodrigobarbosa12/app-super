@@ -8,7 +8,6 @@ import {
   TextInput,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import ap from '../../utils/api';
 import styles from './stylesModal';
 import colors from '../../utils/colors';
 import api from '../../utils/api';
@@ -26,7 +25,7 @@ type Item = {
     valor: number,
 }
 
-const ModalAdd = ({ gruposId, buscarItens }: Props) => {
+const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [item, setItem] = useState < Item > ({
     gruposId,
@@ -41,7 +40,7 @@ const ModalAdd = ({ gruposId, buscarItens }: Props) => {
           if (!item.gruposId) {
             throw 'Não encontrei o id do grupo';
           }
-          
+
           console.log(item);
           await api.novoItem(item);
           buscarItens();
@@ -146,4 +145,4 @@ const ModalAdd = ({ gruposId, buscarItens }: Props) => {
   );
 };
 
-export default ModalAdd;
+export default ModalAddItem;
