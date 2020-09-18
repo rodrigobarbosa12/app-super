@@ -38,8 +38,18 @@ export default StyleSheet.create({
     maxHeight: 400,
   },
   item: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
     padding: 24,
     borderRadius: 8,
+    shadowColor: '9px 7px 5px rgba(50, 50, 50, 0.77)',
     backgroundColor: '#FFF',
     marginBottom: 16,
   },
@@ -55,7 +65,7 @@ export default StyleSheet.create({
   },
   itemProperty: {
     // marginRight: 20,
-    fontSize: 14,
+    fontSize: 15,
     color: '#41414d',
     fontWeight: 'bold',
   },

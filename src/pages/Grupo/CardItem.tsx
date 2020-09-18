@@ -28,7 +28,7 @@ const CardItem = ({ item, removeItem }: Props) => (
     <Text style={styles.itemProperty}>Produto:</Text>
     <Text style={styles.itemValue}>{item.nome}</Text>
 
-    <Text style={styles.itemProperty}>Descrição</Text>
+    <Text style={styles.itemProperty}>Descrição:</Text>
     <Text style={styles.itemValue}>{item.descricao}</Text>
 
     <View style={{
@@ -42,7 +42,7 @@ const CardItem = ({ item, removeItem }: Props) => (
       </Text>
       <Text style={styles.itemValueRow}>{item.quantidade}</Text>
       <Text style={styles.itemProperty}>
-        VALOR:
+        Valor:
       </Text>
       <Text style={styles.itemValueRow}>
         {

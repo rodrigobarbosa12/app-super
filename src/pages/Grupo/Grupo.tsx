@@ -15,9 +15,12 @@ const Grupo = ({ gruposId, grupoNome }: Props) => {
   const [itens, setItens] = useState<Item[]>([]);
 
   const buscarItens = async () => {
-    const { data } = await api.getItens(gruposId);
-
-    setItens(data);
+    try {
+      const { data } = await api.getItens(gruposId);
+      setItens(data);
+    } catch (error) {
+      console.warn('Deu ruim ao buscar items');      
+    }
   };
 
   const removeItem = async (itemId: string) => {
@@ -40,6 +43,7 @@ const Grupo = ({ gruposId, grupoNome }: Props) => {
         <Lista
           titulo={grupoNome}
           itens={itens}
+          gruposId={gruposId}
           buscarItens={buscarItens}
           removeItem={removeItem}
         />

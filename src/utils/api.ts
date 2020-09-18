@@ -11,6 +11,7 @@ const login = (params: Object) => post('/login', params);
 const singUp = (params: Object) => post('/cadastro', params);
 
 const novoGrupo = (params: Object) => post('/novo-grupo', params);
+const novoItem = (params: Object) => post('/novo-item', params);
 
 const getItens = (gruposId: string) => get(`/item/${gruposId}`);
 const getGrupos = (usuarioId: string) => get(`/grupos/${usuarioId}`);
@@ -21,6 +22,7 @@ export default {
   login,
   singUp,
   novoGrupo,
+  novoItem,
   getGrupos,
   getItens,
   removeGrupo,
