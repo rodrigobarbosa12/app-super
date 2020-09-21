@@ -1,4 +1,4 @@
-import React, { useEffect ,useState } from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   Modal,
@@ -23,9 +23,20 @@ const getUsuarioId = async () => await identity();
 
 const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) => {
   const [nome, setNome] = useState<string>('');
+  const [errorInput, setErrorInput] = useState<boolean>(false);
+
+  const resetConfig = () => {
+    setErrorInput(false);
+    setNome('');
+  }
 
   const criarGrupo = async () => {
     try {
+      if (!nome || nome === '\s') {
+        setErrorInput(true);
+        return;
+      }
+
       const { id } = await getUsuarioId();
 
       await api.novoGrupo({
@@ -34,6 +45,8 @@ const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) =
         nome
       });
 
+      setModalVisible(!modalVisible);
+      resetConfig();
       buscarGrupos();
     } catch (error) {
       Alert.alert(get(error, 'response.data.message', 'Algo deu errado, tento de novo mais tarde'))
@@ -54,8 +67,8 @@ const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) =
             <TextInput
               style={styles.inputText}
               placeholder="Qual o nome do grupo?"
-              placeholderTextColor="#999"
-              selectionColor="#999"
+              placeholderTextColor={errorInput ? colors.danger : '#999'}
+              selectionColor={errorInput ? colors.danger : '#999'}
               autoCorrect={false}
               onChangeText={(nome) => setNome(nome)}
             />
@@ -69,6 +82,7 @@ const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) =
                 style={{ ...styles.openButton, backgroundColor: colors.metteDanger }}
                 onPress={() => {
                   setModalVisible(!modalVisible);
+                  resetConfig();
                 }}
               >
                 <Text style={styles.textStyle}>Depois</Text>
@@ -78,7 +92,6 @@ const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) =
                 style={{ ...styles.openButton, backgroundColor: colors.success }}
                 onPress={() => {
                   criarGrupo();
-                  setModalVisible(!modalVisible);
                 }}
               >
                 <Text style={styles.textStyle}>Criar agora</Text>

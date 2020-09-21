@@ -26,24 +26,39 @@ type Item = {
 }
 
 const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [item, setItem] = useState < Item > ({
+  const defaultValues = {
     gruposId,
     nome: '',
     descricao: '',
-    quantidade: 0,
+    quantidade: 1,
     valor: 0,
-  });
+  };
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [errorInput, setErrorInput] = useState<boolean>(false);
+  const [item, setItem] = useState < Item > (defaultValues);
+
+  const resetConfig = () => {
+    setErrorInput(false);
+    setItem(defaultValues);
+  }
 
   const criarItem = async () => {
       try {
+          if (!item.nome) {
+            setErrorInput(true);
+            return;
+          }
+
           if (!item.gruposId) {
             throw 'Não encontrei o id do grupo';
           }
 
           console.log(item);
           await api.novoItem(item);
+          setModalVisible(!modalVisible);
           buscarItens();
+          resetConfig();
       } catch (error) {
           console.warn(error.response);
       }
@@ -65,9 +80,9 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
 
             <TextInput
               style={styles.inputText}
-              placeholder="Produto"
-              placeholderTextColor="#999"
-              selectionColor="#999"
+              placeholder={errorInput ? 'Produto é obrigatório' : 'Produto'}
+              placeholderTextColor={errorInput ? colors.danger : '#999'}
+              selectionColor={errorInput ? colors.danger : '#999'}
               autoCorrect={false}
               onChangeText={(nome) => setItem((s) => ({ ...s, nome }))}
             />
@@ -114,6 +129,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                 style={{ ...styles.openButton, backgroundColor: colors.metteDanger }}
                 onPress={() => {
                   setModalVisible(!modalVisible);
+                  resetConfig();
                 }}
               >
                 <Text style={styles.textStyle}>Depois</Text>
@@ -123,7 +139,6 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                 style={{ ...styles.openButton, backgroundColor: colors.success }}
                 onPress={() => {
                   criarItem();
-                  setModalVisible(!modalVisible);
                 }}
               >
                 <Text style={styles.textStyle}>Criar agora</Text>
