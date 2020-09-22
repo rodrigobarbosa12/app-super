@@ -19,12 +19,13 @@ type Props = {
 const CardItem = ({ item, removeItem }: Props) => (
   <View style={styles.item}>
     <Text style={styles.cardGrupoDate}>{moment(item.data).format('DD/MM/YYYY H:mm')}</Text>
-    <TouchableOpacity
-      style={styles.buttonTrash}
-      onPress={() => removeItem(item.id)}
-    >
-      <Feather name="trash" size={20} color={colors.danger} />
-    </TouchableOpacity>
+    <View style={styles.buttonTrash}>
+      <TouchableOpacity
+        onPress={() => removeItem(item.id)}
+      >
+        <Feather name="trash" size={20} color={colors.danger} />
+      </TouchableOpacity>
+    </View>
     <Text style={styles.itemProperty}>Produto:</Text>
     <Text style={styles.itemValue}>{item.nome}</Text>
 

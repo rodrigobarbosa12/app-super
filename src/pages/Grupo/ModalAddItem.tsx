@@ -6,6 +6,8 @@ import {
   TouchableHighlight,
   View,
   TextInput,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from './stylesModal';
@@ -75,76 +77,79 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
         }}
       >
         <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Criar novo item</Text>
+          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>Criar novo item</Text>
 
-            <TextInput
-              style={styles.inputText}
-              placeholder={errorInput ? 'Produto é obrigatório' : 'Produto'}
-              placeholderTextColor={errorInput ? colors.danger : '#999'}
-              selectionColor={errorInput ? colors.danger : '#999'}
-              autoCorrect={false}
-              onChangeText={(nome) => setItem((s) => ({ ...s, nome }))}
-            />
-            <TextInput
-              style={styles.inputText}
-              placeholder="Descrição"
-              placeholderTextColor="#999"
-              selectionColor="#999"
-              autoCorrect={false}
-              onChangeText={(descricao) => setItem((s) => ({ ...s, descricao }))}
-            />
-            <View style={{
-              top: 5,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}
-            >
               <TextInput
-                style={styles.inputNumber}
-                placeholder="Quantidade"
-                keyboardType="numeric"
+                style={styles.inputText}
+                placeholder={errorInput ? 'Produto é obrigatório' : 'Produto'}
+                placeholderTextColor={errorInput ? colors.danger : '#999'}
+                selectionColor={errorInput ? colors.danger : '#999'}
+                autoCorrect={false}
+                onChangeText={(nome) => setItem((s) => ({ ...s, nome }))}
+              />
+              <TextInput
+                style={styles.inputText}
+                placeholder="Descrição"
                 placeholderTextColor="#999"
                 selectionColor="#999"
                 autoCorrect={false}
-                onChangeText={(quantidade) => setItem((s) => ({ ...s, quantidade: Number(quantidade) }))}
+                onChangeText={(descricao) => setItem((s) => ({ ...s, descricao }))}
               />
-              <TextInput
-                style={styles.inputNumber}
-                placeholder="Valor"
-                keyboardType="numeric"
-                placeholderTextColor="#999"
-                selectionColor="#999"
-                autoCorrect={false}
-                onChangeText={(valor) => setItem((s) => ({ ...s, valor: Number(valor) }))}
-              />
-            </View>
 
-            <View style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}
-            >
-              <TouchableHighlight
-                style={{ ...styles.openButton, backgroundColor: colors.metteDanger }}
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                  resetConfig();
+                <View style={{
+                  top: 5,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
                 }}
-              >
-                <Text style={styles.textStyle}>Depois</Text>
-              </TouchableHighlight>
+                >
+                  <TextInput
+                    style={styles.inputNumber}
+                    placeholder="Quantidade"
+                    keyboardType="numeric"
+                    placeholderTextColor="#999"
+                    selectionColor="#999"
+                    autoCorrect={false}
+                    onChangeText={(quantidade) => setItem((s) => ({ ...s, quantidade: Number(quantidade) }))}
+                  />
+                  <TextInput
+                    style={styles.inputNumber}
+                    placeholder="Valor"
+                    keyboardType="numeric"
+                    placeholderTextColor="#999"
+                    selectionColor="#999"
+                    autoCorrect={false}
+                    onChangeText={(valor) => setItem((s) => ({ ...s, valor: Number(valor) }))}
+                  />
+                </View>
 
-              <TouchableHighlight
-                style={{ ...styles.openButton, backgroundColor: colors.success }}
-                onPress={() => {
-                  criarItem();
-                }}
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
               >
-                <Text style={styles.textStyle}>Criar agora</Text>
-              </TouchableHighlight>
+                <TouchableHighlight
+                  style={{ ...styles.openButton, backgroundColor: colors.metteDanger }}
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                    resetConfig();
+                  }}
+                >
+                  <Text style={styles.textStyle}>Depois</Text>
+                </TouchableHighlight>
+
+                <TouchableHighlight
+                  style={{ ...styles.openButton, backgroundColor: colors.success }}
+                  onPress={() => {
+                    criarItem();
+                  }}
+                >
+                  <Text style={styles.textStyle}>Criar agora</Text>
+                </TouchableHighlight>
+              </View>
             </View>
-          </View>
+          </TouchableWithoutFeedback>
         </View>
       </Modal>
 
