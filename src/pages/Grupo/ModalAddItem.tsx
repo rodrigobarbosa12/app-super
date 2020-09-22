@@ -23,8 +23,8 @@ type Item = {
     gruposId: string,
     nome: string,
     descricao: string,
-    quantidade: number,
-    valor: number,
+    quantidade: string,
+    valor: string,
 }
 
 const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
@@ -32,8 +32,8 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
     gruposId,
     nome: '',
     descricao: '',
-    quantidade: 1,
-    valor: 0,
+    quantidade: '1',
+    valor: '0',
   };
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -47,7 +47,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
 
   const criarItem = async () => {
       try {
-          if (!item.nome) {
+          if (!item.nome || item.nome === ' ') {
             setErrorInput(true);
             return;
           }
@@ -56,7 +56,6 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
             throw 'Não encontrei o id do grupo';
           }
 
-          console.log(item);
           await api.novoItem(item);
           setModalVisible(!modalVisible);
           buscarItens();
@@ -87,7 +86,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                 placeholderTextColor={errorInput ? colors.danger : '#999'}
                 selectionColor={errorInput ? colors.danger : '#999'}
                 autoCorrect={false}
-                onChangeText={(nome) => setItem((s) => ({ ...s, nome }))}
+                onChangeText={(nome) => setItem((s) => ({ ...s, nome: nome.replace(/\s+/g, ' ') }))}
               />
               <TextInput
                 style={styles.inputText}
@@ -111,7 +110,10 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                     placeholderTextColor="#999"
                     selectionColor="#999"
                     autoCorrect={false}
-                    onChangeText={(quantidade) => setItem((s) => ({ ...s, quantidade: Number(quantidade) }))}
+                    onChangeText={(quantidade) => setItem((s) => ({ 
+                      ...s, 
+                      quantidade: quantidade.replace(/\,+/g, '') 
+                    }))}
                   />
                   <TextInput
                     style={styles.inputNumber}
@@ -120,7 +122,10 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                     placeholderTextColor="#999"
                     selectionColor="#999"
                     autoCorrect={false}
-                    onChangeText={(valor) => setItem((s) => ({ ...s, valor: Number(valor) }))}
+                    onChangeText={(valor) => setItem((s) => ({ 
+                      ...s, 
+                      valor: valor.replace(',', '.') 
+                    }))}
                   />
                 </View>
 

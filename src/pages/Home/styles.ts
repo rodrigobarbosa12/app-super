@@ -32,6 +32,12 @@ export default StyleSheet.create({
     lineHeight: 24,
     color: '#737380',
   },
+  empty: {
+    top: 50,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   itemsList: {
     marginTop: 32,
     height: 400,

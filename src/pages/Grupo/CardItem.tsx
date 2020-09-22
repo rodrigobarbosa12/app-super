@@ -13,15 +13,15 @@ import { Item } from './type';
 
 type Props = {
   item: Item,
-  removeItem: (itemId: string) => void
+  alertRemoveGrupo: (itemId: string) => void
 }
 
-const CardItem = ({ item, removeItem }: Props) => (
+const CardItem = ({ item, alertRemoveGrupo }: Props) => (
   <View style={styles.item}>
     <Text style={styles.cardGrupoDate}>{moment(item.data).format('DD/MM/YYYY H:mm')}</Text>
     <View style={styles.buttonTrash}>
       <TouchableOpacity
-        onPress={() => removeItem(item.id)}
+        onPress={() => alertRemoveGrupo(item.id)}
       >
         <Feather name="trash" size={20} color={colors.danger} />
       </TouchableOpacity>
@@ -29,7 +29,7 @@ const CardItem = ({ item, removeItem }: Props) => (
     <Text style={styles.itemProperty}>Produto:</Text>
     <Text style={styles.itemValue}>{item.nome}</Text>
 
-    <Text style={styles.itemProperty}>Descrição:</Text>
+    <Text style={styles.itemProperty}>Observação:</Text>
     <Text style={styles.itemValue}>{item.descricao}</Text>
 
     <View style={{

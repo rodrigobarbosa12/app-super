@@ -32,7 +32,7 @@ const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) =
 
   const criarGrupo = async () => {
     try {
-      if (!nome || nome === '\s') {
+      if (!nome || nome === ' ') {
         setErrorInput(true);
         return;
       }
@@ -70,7 +70,7 @@ const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) =
               placeholderTextColor={errorInput ? colors.danger : '#999'}
               selectionColor={errorInput ? colors.danger : '#999'}
               autoCorrect={false}
-              onChangeText={(nome) => setNome(nome)}
+              onChangeText={(nome) => setNome(nome.replace(/\s+/g, ' '))}
             />
 
             <View style={{
