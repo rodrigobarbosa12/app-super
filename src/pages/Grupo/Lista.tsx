@@ -27,21 +27,24 @@ const Lista = ({
   alertRemoveGrupo,
 }: Props) => (
     <>
-      <View style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Text style={styles.title}>{titulo}</Text>
-        <View>
-          <ModalAdd 
-            gruposId={gruposId} 
-            buscarItens={buscarItens}
-          />
+
+      <View style={{paddingHorizontal: 32}}>
+        <View style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text style={styles.title}>{titulo}</Text>
+          <View>
+            <ModalAdd
+              gruposId={gruposId}
+              buscarItens={buscarItens}
+            />
+          </View>
         </View>
+        <Text style={styles.description}>Use sua lista como quiser</Text>
       </View>
-      <Text style={styles.description}>Use sua lista como quiser</Text>
-      {itens.length <= 0  
+      {itens.length <= 0
         ? <View style={styles.empty}>
             <Lottie
               style={{ width: 250 }}

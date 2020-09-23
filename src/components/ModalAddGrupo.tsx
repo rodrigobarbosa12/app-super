@@ -34,6 +34,7 @@ const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) =
     try {
       if (!nome || nome === ' ') {
         setErrorInput(true);
+        setNome('');
         return;
       }
 
@@ -66,6 +67,7 @@ const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) =
 
             <TextInput
               style={styles.inputText}
+              defaultValue={nome}
               placeholder="Qual o nome do grupo?"
               placeholderTextColor={errorInput ? colors.danger : '#999'}
               selectionColor={errorInput ? colors.danger : '#999'}

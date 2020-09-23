@@ -29,8 +29,13 @@ const CardItem = ({ item, alertRemoveGrupo }: Props) => (
     <Text style={styles.itemProperty}>Produto:</Text>
     <Text style={styles.itemValue}>{item.nome}</Text>
 
-    <Text style={styles.itemProperty}>Observação:</Text>
-    <Text style={styles.itemValue}>{item.descricao}</Text>
+    {item.descricao
+      ? <>
+          <Text style={styles.itemProperty}>Observação:</Text>
+          <Text style={styles.itemValue}>{item.descricao}</Text>
+        </>
+      : null
+    }
 
     <View style={{
       top: 5,
@@ -38,20 +43,30 @@ const CardItem = ({ item, alertRemoveGrupo }: Props) => (
       justifyContent: 'space-between',
     }}
     >
-      <Text style={styles.itemProperty}>
-        Quantidade:
-      </Text>
-      <Text style={styles.itemValueRow}>{item.quantidade}</Text>
-      <Text style={styles.itemProperty}>
-        Valor:
-      </Text>
-      <Text style={styles.itemValueRow}>
-        {
-          Intl
-            .NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
-            .format(item.valor)
-        }
-      </Text>
+      {item.quantidade
+        ? <>
+            <Text style={styles.itemProperty}>
+              Quantidade:
+            </Text>
+            <Text style={styles.itemValueRow}>{item.quantidade}</Text>
+          </>
+        : null
+      }
+      {item.valor
+        ? <>
+            <Text style={styles.itemProperty}>
+              Valor:
+            </Text>
+            <Text style={styles.itemValueRow}>
+              {
+                Intl
+                  .NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+                  .format(item.valor)
+              }
+            </Text>
+          </>
+        : null
+      }
     </View>
   </View>
 );

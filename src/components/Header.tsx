@@ -7,11 +7,10 @@ import { themeDefault } from '../utils/colors';
 const styles = StyleSheet.create({
   bottom: {
     justifyContent: 'space-around',
-    backgroundColor: themeDefault.purple,
+    backgroundColor: 'transparent',
     position: 'absolute',
     left: 0,
     right: 0,
-    top: 10,
   },
 });
 

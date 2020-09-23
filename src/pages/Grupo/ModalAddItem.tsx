@@ -32,7 +32,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
     gruposId,
     nome: '',
     descricao: '',
-    quantidade: '1',
+    quantidade: '0',
     valor: '0',
   };
 
@@ -49,6 +49,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
       try {
           if (!item.nome || item.nome === ' ') {
             setErrorInput(true);
+            setItem(s => ({ ...s, nome: '' }));
             return;
           }
 
@@ -82,7 +83,8 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
 
               <TextInput
                 style={styles.inputText}
-                placeholder={errorInput ? 'Produto é obrigatório' : 'Produto'}
+                defaultValue={item.nome}
+                placeholder={errorInput ? 'Nome do item é obrigatório' : 'Nome do item'}
                 placeholderTextColor={errorInput ? colors.danger : '#999'}
                 selectionColor={errorInput ? colors.danger : '#999'}
                 autoCorrect={false}
@@ -90,7 +92,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
               />
               <TextInput
                 style={styles.inputText}
-                placeholder="Descrição"
+                placeholder="Observação"
                 placeholderTextColor="#999"
                 selectionColor="#999"
                 autoCorrect={false}
@@ -110,9 +112,9 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                     placeholderTextColor="#999"
                     selectionColor="#999"
                     autoCorrect={false}
-                    onChangeText={(quantidade) => setItem((s) => ({ 
-                      ...s, 
-                      quantidade: quantidade.replace(/\,+/g, '') 
+                    onChangeText={(quantidade) => setItem((s) => ({
+                      ...s,
+                      quantidade: quantidade.replace(/\,+/g, '')
                     }))}
                   />
                   <TextInput
@@ -122,9 +124,9 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                     placeholderTextColor="#999"
                     selectionColor="#999"
                     autoCorrect={false}
-                    onChangeText={(valor) => setItem((s) => ({ 
-                      ...s, 
-                      valor: valor.replace(',', '.') 
+                    onChangeText={(valor) => setItem((s) => ({
+                      ...s,
+                      valor: valor.replace(',', '.')
                     }))}
                   />
                 </View>

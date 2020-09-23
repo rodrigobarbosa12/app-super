@@ -22,7 +22,7 @@ const Grupo = ({ gruposId, grupoNome }: Props) => {
       const { data } = await api.getItens(gruposId);
       setItens(data);
     } catch (error) {
-      console.warn('Deu ruim ao buscar items');      
+      console.warn('Deu ruim ao buscar items');
     }
   };
 

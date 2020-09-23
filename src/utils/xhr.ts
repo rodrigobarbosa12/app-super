@@ -2,10 +2,10 @@
 
 import axios from 'axios';
 // import qs from 'qs';
-import API_WORLDSTUDIO from './constants';
+import API_SUPER from './constants';
 
 const xhr = axios.create({
-  baseURL: API_WORLDSTUDIO,
+  baseURL: API_SUPER,
 //   paramsSerializer: qs.stringify,
 });
 

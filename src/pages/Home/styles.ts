@@ -3,9 +3,7 @@ import colors from '../../utils/colors';
 
 export default StyleSheet.create({
   container: {
-    paddingHorizontal: 24,
-    backgroundColor: '#f8f9fa',
-    top: 10,
+    // backgroundColor: '#f8f9fa',
     paddingBottom: 700,
   },
   header: {
@@ -39,23 +37,22 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   itemsList: {
-    marginTop: 32,
+    marginTop: 10,
+    padding: 15,
     height: 400,
     maxHeight: 400,
   },
   item: {
-    shadowColor: '#000',
     shadowOffset: {
-      width: 0,
-      height: 2,
+      width: 6,
+      height: 6,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
     padding: 24,
     borderRadius: 8,
-    shadowColor: '9px 7px 5px rgba(50, 50, 50, 0.77)',
+    shadowColor: '9px 7px 5px  10px rgba(50, 50, 50, 0.77)',
     backgroundColor: '#FFF',
     marginBottom: 16,
   },
