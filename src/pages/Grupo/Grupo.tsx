@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import api from '../../utils/api';
 import StatusBar from '../../components/StatusBar';
 import WarningAlert from '../../components/WarningAlert';
+import { connect, disconnect, subscribeToNewItem } from '../../utils/socket';
 import Lista from './Lista';
 import styles from '../Home/styles';
 import { Item } from './type';
@@ -21,8 +22,9 @@ const Grupo = ({ gruposId, grupoNome }: Props) => {
     try {
       const { data } = await api.getItens(gruposId);
       setItens(data);
+      setupWebsocket();
     } catch (error) {
-      console.warn('Deu ruim ao buscar items');
+      console.warn('Deu ruim ao buscar itens');
     }
   };
 
@@ -45,6 +47,16 @@ const Grupo = ({ gruposId, grupoNome }: Props) => {
   useEffect(() => {
     buscarItens();
   }, []);
+
+  useEffect(() => {
+    subscribeToNewItem(item => setItens([item, ...itens]));
+  }, [itens]);
+
+  const setupWebsocket = () => {
+      disconnect();
+
+      connect(gruposId);
+  }
 
   return (
     <>
