@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import colors from '../../utils/colors';
 
 export default StyleSheet.create({
@@ -39,8 +39,8 @@ export default StyleSheet.create({
   itemsList: {
     marginTop: 10,
     padding: 15,
-    height: 400,
-    maxHeight: 400,
+    height: Dimensions.get('window').height,
+    maxHeight: 460,
   },
   item: {
     shadowOffset: {

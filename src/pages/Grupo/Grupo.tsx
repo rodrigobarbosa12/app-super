@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import api from '../../utils/api';
 import StatusBar from '../../components/StatusBar';
 import WarningAlert from '../../components/WarningAlert';
@@ -7,6 +8,7 @@ import { connect, disconnect, subscribeToNewItem } from '../../utils/socket';
 import Lista from './Lista';
 import styles from '../Home/styles';
 import { Item } from './type';
+import ModalAddUser from './ModalAddUser';
 
 type Props = {
   gruposId: string,
@@ -61,7 +63,9 @@ const Grupo = ({ gruposId, grupoNome }: Props) => {
   return (
     <>
       <View>
-        <StatusBar />
+        <StatusBar>
+          <ModalAddUser gruposId={gruposId} />
+        </StatusBar>
         <View style={styles.container}>
           <Lista
             titulo={grupoNome}

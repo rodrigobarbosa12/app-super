@@ -27,7 +27,6 @@ const Lista = ({
   alertRemoveGrupo,
 }: Props) => (
     <>
-
       <View style={{paddingHorizontal: 32}}>
         <View style={{
             flexDirection: 'row',
@@ -55,12 +54,12 @@ const Lista = ({
             />
           </View>
          : <FlatList
+            style={styles.itemsList}
             data={itens}
             keyExtractor={(item) => String(item.id)}
             showsVerticalScrollIndicator={false}
             onEndReached={buscarItens}
-            onEndReachedThreshold={0.2}
-            style={styles.itemsList}
+            onEndReachedThreshold={0.5}
             renderItem={({ item }) => <CardItem item={item} alertRemoveGrupo={alertRemoveGrupo} />}
           />
         }

@@ -7,10 +7,10 @@ import {
   View,
   TextInput,
 } from 'react-native';
-import styles from '../pages/Grupo/stylesModal';
-import colors from '../utils/colors';
-import api from '../utils/api';
-import identity from '../utils/identity';
+import styles from '../Grupo/stylesModal';
+import colors from '../../utils/colors';
+import api from '../../utils/api';
+import identity from '../../utils/identity';
 import get from 'lodash/get';
 
 type Props = {
@@ -41,8 +41,7 @@ const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) =
       const { id } = await getUsuarioId();
 
       await api.novoGrupo({
-        usuarioId: id,
-        adm: id,
+        usuariosId: id,
         nome
       });
 

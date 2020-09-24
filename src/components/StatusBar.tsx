@@ -6,7 +6,7 @@ import { themeDefault } from '../utils/colors';
 type Props = {
   title: string,
   subtitle: string,
-  children: Node
+  children: any
 };
 
 const StatusBar = ({ title, subtitle, children }: Props) => (

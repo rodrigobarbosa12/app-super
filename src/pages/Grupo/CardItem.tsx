@@ -3,11 +3,9 @@ import React from 'react';
 import {
   Text,
   View,
-  TouchableOpacity,
 } from 'react-native';
 import moment from 'moment';
-import { Feather } from '@expo/vector-icons';
-import colors from '../../utils/colors';
+import DropdownMenuItem from './DropdownMenuItem';
 import styles from '../Home/styles';
 import { Item } from './type';
 
@@ -20,11 +18,10 @@ const CardItem = ({ item, alertRemoveGrupo }: Props) => (
   <View style={styles.item}>
     <Text style={styles.cardGrupoDate}>{moment(item.data).format('DD/MM/YYYY H:mm')}</Text>
     <View style={styles.buttonTrash}>
-      <TouchableOpacity
-        onPress={() => alertRemoveGrupo(item.id)}
-      >
-        <Feather name="trash" size={20} color={colors.danger} />
-      </TouchableOpacity>
+      <DropdownMenuItem
+        alertRemoveGrupo={alertRemoveGrupo}
+        itemId={item.id}
+      />
     </View>
     <Text style={styles.itemProperty}>Produto:</Text>
     <Text style={styles.itemValue}>{item.nome}</Text>

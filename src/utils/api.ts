@@ -11,17 +11,19 @@ const login = (params: Object) => post('/login', params);
 const singUp = (params: Object) => post('/cadastro', params);
 
 const novoGrupo = (params: Object) => post('/novo-grupo', params);
-const novoItem = (params: Object) => post('/novo-item', params);
-
-const getItens = (gruposId: string) => get(`/item/${gruposId}`);
+const addUser = (params: Object) => post('/grupos/add-usuario', params);
 const getGrupos = (usuarioId: string) => get(`/grupos/${usuarioId}`);
 const removeGrupo = (itemId: string) => deletar(`/remove-grupo/${itemId}`);
+
+const novoItem = (params: Object) => post('/novo-item', params);
+const getItens = (gruposId: string) => get(`/item/${gruposId}`);
 const removeIten = (grupoId: string) => deletar(`/remove-item/${grupoId}`);
 
 export default {
   login,
   singUp,
   novoGrupo,
+  addUser,
   novoItem,
   getGrupos,
   getItens,

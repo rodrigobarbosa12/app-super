@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FAB, Portal, Provider } from 'react-native-paper';
-import ModalAddGrupo from './ModalAddGrupo';
+import ModalAddGrupo from '../pages/Home/ModalAddGrupo';
 
 type Props = {
   buscarGrupos: () => void,
