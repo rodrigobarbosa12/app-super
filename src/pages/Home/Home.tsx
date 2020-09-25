@@ -13,10 +13,12 @@ const Home = () => {
   const [grupos, setGrupos] = useState<Grupo[]>([]);
   const [visibilit, setVisibilit] = useState<boolean>(false);
   const [grupoId, setGrupoId] = useState<string>('');
+  const [usuariosId, setUsuariosId] = useState<string>('');
 
   const buscarGrupos = async () => {
     try {
       const { id } = await identity();
+      setUsuariosId(id);
       const { data } = await api.getGrupos(id);
       setGrupos(data);
     } catch (error) {
@@ -26,12 +28,24 @@ const Home = () => {
 
   const removeGrupo = async () => {
     try {
-      await api.removeGrupo(grupoId);
+      const { id } = await identity();
+      await api.removeGrupo(grupoId, id);
       await setGrupos(grupos.filter((grupo) => grupo.id !== grupoId));
       setVisibilit(false);
     } catch (error) {
-      console.warn('Deu ruim');
+      console.warn(error.response.data.message);
     }
+  };
+
+  const sairDoGrupo = async () => {
+    // try {
+    //   const { id: usuariosId } = await identity();
+    //   await api.removeGrupo(grupoId, usuariosId);
+    //   await setGrupos(grupos.filter((grupo) => grupo.id !== grupoId));
+    //   setVisibilit(false);
+    // } catch (error) {
+    //   console.warn(error.response.data.message);
+    // }
   };
 
   const alertRemoveGrupo = (gruposId: string) => {
@@ -52,6 +66,7 @@ const Home = () => {
             grupos={grupos}
             buscarGrupos={buscarGrupos}
             alertRemoveGrupo={alertRemoveGrupo}
+            usuariosId={usuariosId}
           />
         </View>
       </View>

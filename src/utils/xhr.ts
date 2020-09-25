@@ -10,9 +10,9 @@ const xhr = axios.create({
 });
 
 xhr.interceptors.response.use((response) => response, (error) => {
-  if (error.response && error.response.status === 401) {
-    return error.response;
-  }
+  // if (error.response && error.response.status === 401) {
+  //   return error.response;
+  // }
   return Promise.reject(error);
 });
 

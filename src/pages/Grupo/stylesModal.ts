@@ -58,6 +58,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
+  modalTextError: {
+    color: colors.danger,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    fontSize: 14,
+    textAlign: 'center',
+  },
 });
 
 export default styles;

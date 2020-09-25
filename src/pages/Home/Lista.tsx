@@ -13,10 +13,11 @@ import { Grupo } from './type';
 type Props = {
   grupos: Grupo[],
   buscarGrupos: () => void,
-  alertRemoveGrupo: (gruposId: string) => void
+  alertRemoveGrupo: (gruposId: string) => void,
+  usuariosId: string,
 }
 
-const Lista = ({ grupos, buscarGrupos, alertRemoveGrupo }: Props) => (
+const Lista = ({ grupos, buscarGrupos, alertRemoveGrupo, usuariosId }: Props) => (
   <>
     <View style={{paddingHorizontal: 32}}>
       <Text style={styles.title}>Grupos</Text>
@@ -39,7 +40,13 @@ const Lista = ({ grupos, buscarGrupos, alertRemoveGrupo }: Props) => (
         onEndReached={buscarGrupos}
         onEndReachedThreshold={0.2}
         style={styles.itemsList}
-        renderItem={({ item }) => <CardGrupo grupo={item} alertRemoveGrupo={alertRemoveGrupo} />}
+        renderItem={({ item }) =>
+          <CardGrupo
+            grupo={item}
+            alertRemoveGrupo={alertRemoveGrupo}
+            usuariosId={usuariosId}
+            />
+        }
       />
     }
   </>

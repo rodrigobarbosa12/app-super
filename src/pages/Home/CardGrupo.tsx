@@ -16,18 +16,21 @@ import { Grupo } from './type';
 
 type Props = {
   grupo: Grupo,
-  alertRemoveGrupo: (grupoId: string) => void
+  alertRemoveGrupo: (grupoId: string) => void,
+  usuariosId: string,
 };
 
-const CardGrupo = ({ grupo, alertRemoveGrupo }: Props) => (
+const CardGrupo = ({ grupo, alertRemoveGrupo, usuariosId }: Props) => (
   <View style={styles.item}>
     <Text style={styles.cardGrupoDate}>{moment(grupo.data).format('DD/MM/YYYY H:mm')}</Text>
     <View style={styles.buttonTrash}>
-      <TouchableOpacity
-        onPress={() => alertRemoveGrupo(grupo.id)}
-      >
-        <Feather name="trash" size={16} color={colors.danger} />
-      </TouchableOpacity>
+      {grupo.host === usuariosId && (
+        <TouchableOpacity
+          onPress={() => alertRemoveGrupo(grupo.id)}
+        >
+          <Feather name="trash" size={16} color={colors.danger} />
+        </TouchableOpacity>
+      )}
     </View>
     <Text style={styles.cardGrupoName}>{grupo.nome}</Text>
 

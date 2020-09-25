@@ -13,7 +13,7 @@ const singUp = (params: Object) => post('/cadastro', params);
 const novoGrupo = (params: Object) => post('/novo-grupo', params);
 const addUser = (params: Object) => post('/grupos/add-usuario', params);
 const getGrupos = (usuarioId: string) => get(`/grupos/${usuarioId}`);
-const removeGrupo = (itemId: string) => deletar(`/remove-grupo/${itemId}`);
+const removeGrupo = (itemId: string, usuariosId: string) => deletar(`/remove-grupo/${itemId}/${usuariosId}`);
 
 const novoItem = (params: Object) => post('/novo-item', params);
 const getItens = (gruposId: string) => get(`/item/${gruposId}`);
