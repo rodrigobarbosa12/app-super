@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
+import FadeInView from '../../components/FadeInView';
 import Header from '../../components/Header';
 import FloatingButton from '../../components/FloatingButton';
 import api from '../../utils/api';
@@ -48,20 +49,24 @@ const Home = () => {
 
   return (
     <>
-      <View>
-        <Header />
-        <View style={styles.container}>
-          <Lista
-            grupos={grupos}
-            buscarGrupos={buscarGrupos}
-            alertRemoveGrupo={alertRemoveGrupo}
-            usuariosId={usuariosId}
-          />
+      <FadeInView>
+        <View>
+          <Header />
+          <View style={styles.container}>
+            <Lista
+              grupos={grupos}
+              buscarGrupos={buscarGrupos}
+              alertRemoveGrupo={alertRemoveGrupo}
+              usuariosId={usuariosId}
+            />
+          </View>
         </View>
-      </View>
+      </FadeInView>
+
       <FloatingButton
         buscarGrupos={buscarGrupos}
       />
+
       <WarningAlert
         title="Atenção"
         message="Todos os itens serão excluidos"

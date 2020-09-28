@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import { Feather } from '@expo/vector-icons';
+import FadeInView from '../../components/FadeInView';
 import StatusBar from '../../components/StatusBar';
 import WarningAlert from '../../components/WarningAlert';
 import { connect, disconnect, subscribeToNewItem } from '../../utils/socket';
@@ -69,7 +69,7 @@ const GrupoContainer = ({ grupo }: Props) => {
   }, []);
 
   useEffect(() => {
-    subscribeToNewItem(item => setItens([item, ...itens]));
+    subscribeToNewItem((item: Item) => setItens([item, ...itens]));
   }, [itens]);
 
   const setupWebsocket = () => {
@@ -78,47 +78,49 @@ const GrupoContainer = ({ grupo }: Props) => {
       connect(grupo.id);
   }
 
-  const RenderOptionsHost = () => { 
+  const RenderOptionsHost = () => {
     if (usuarioLogado === grupo.host) {
       return <ModalAddUser gruposId={grupo.id} />;
     }
 
     return (
-      <TouchableOpacity 
+      <TouchableOpacity
         style={{ marginRight: 20 }}
         onPress={() => setVisibilitExitGroup(true)}
       >
         <Feather name="user-x" size={30} color="#FFF" />
-      </TouchableOpacity>        
+      </TouchableOpacity>
     );
   }
 
   return (
     <>
-      <View>
-        <StatusBar>
-          <RenderOptionsHost />
-        </StatusBar>
-        <View style={styles.container}>
-          <Lista
-            titulo={grupo.nome}
-            itens={itens}
-            gruposId={grupo.id}
-            buscarItens={buscarItens}
-            alertRemoveGrupo={alertRemoveGrupo}
-          />
+      <FadeInView>
+        <View>
+          <StatusBar>
+            <RenderOptionsHost />
+          </StatusBar>
+          <View style={styles.container}>
+            <Lista
+              titulo={grupo.nome}
+              itens={itens}
+              gruposId={grupo.id}
+              buscarItens={buscarItens}
+              alertRemoveGrupo={alertRemoveGrupo}
+            />
+          </View>
         </View>
-      </View>
-        <WarningAlert
-          title="Atenção"
-          message="Deseja excluir esse item?"
-          show={visibilit}
-          showConfirmButton
-          showCancelButton
-          onConfirm={removeItem}
-          onCalcel={() => setVisibilit(false)}
-          cancelText="Depois"
-          confirmText="Excluir"
+      </FadeInView>
+      <WarningAlert
+        title="Atenção"
+        message="Deseja excluir esse item?"
+        show={visibilit}
+        showConfirmButton
+        showCancelButton
+        onConfirm={removeItem}
+        onCalcel={() => setVisibilit(false)}
+        cancelText="Depois"
+        confirmText="Excluir"
       />
       <WarningAlert
         title="Atenção"
@@ -130,8 +132,8 @@ const GrupoContainer = ({ grupo }: Props) => {
         onCalcel={() => setVisibilitExitGroup(false)}
         cancelText="Ficar"
         confirmText="Sair agora"
-    />
-      </>
+      />
+    </>
   );
 };
 

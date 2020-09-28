@@ -19,7 +19,7 @@ type Props = {
 
 const Lista = ({ grupos, buscarGrupos, alertRemoveGrupo, usuariosId }: Props) => (
   <>
-    <View style={{paddingHorizontal: 32}}>
+    <View style={{ paddingHorizontal: 32 }}>
       <Text style={styles.title}>Grupos</Text>
       <Text style={styles.description}>Escolha um dos grupos</Text>
     </View>
