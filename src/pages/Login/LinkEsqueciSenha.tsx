@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 const LinkEsqueciSenha = () => (
   <TouchableOpacity
     style={styles.detailsButton}
-    onPress={() => toRouteAuth(Actions.Profile)}
+    onPress={() => toRouteAuth('Profile')}
   >
     <Text style={styles.detailsButtonText}>
       Esqueci minha senha

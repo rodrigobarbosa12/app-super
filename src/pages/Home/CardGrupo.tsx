@@ -38,7 +38,7 @@ const CardGrupo = ({ grupo, alertRemoveGrupo, usuariosId }: Props) => (
 
     <TouchableOpacity
       style={styles.detailsButton}
-      onPress={() => toRouteAuth(Actions.Grupo, { gruposId: grupo.id, grupoNome: grupo.nome })}
+      onPress={() => toRouteAuth('Grupo', { grupo })}
     >
       <Text style={styles.detailsButtonText}>Ver itens</Text>
       <Feather name="arrow-right" size={16} color={colors.matteBlue} />

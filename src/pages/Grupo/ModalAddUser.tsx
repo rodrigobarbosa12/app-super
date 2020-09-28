@@ -5,8 +5,8 @@ import {
   Text,
   View,
   TextInput,
-  TouchableHighlight,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   Keyboard,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
@@ -62,7 +62,7 @@ const ModalAddUser = ({ gruposId }: Props) => {
           <View style={styles.centeredView}>
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
               <View style={styles.modalView}>
-                <Text style={styles.modalText}>Adicionar usuário ao grupo</Text>
+                <Text style={styles.modalText}>Adicionar membro ao grupo</Text>
 
                 <TextInput
                   style={styles.inputText}
@@ -86,37 +86,37 @@ const ModalAddUser = ({ gruposId }: Props) => {
                   justifyContent: 'space-between',
                 }}
                 >
-                  <TouchableHighlight
+                  <TouchableOpacity
                     style={{ ...styles.openButton, backgroundColor: colors.metteDanger }}
                     onPress={() => {
                       resetConfig();
                     }}
                   >
                     <Text style={styles.textStyle}>Depois</Text>
-                  </TouchableHighlight>
+                  </TouchableOpacity>
 
-                  <TouchableHighlight
+                  <TouchableOpacity
                     style={{ ...styles.openButton, backgroundColor: colors.success }}
                     onPress={() => {
                       adicionarUser();
                     }}
                   >
                     <Text style={styles.textStyle}>Adicionar</Text>
-                  </TouchableHighlight>
+                  </TouchableOpacity>
                 </View>
               </View>
             </TouchableWithoutFeedback>
           </View>
         </Modal>
       </View>
-      <TouchableHighlight
+      <TouchableOpacity
           style={{ marginRight: 20 }}
           onPress={() => {
             setModalVisible(true);
           }}
         >
-          <Feather name="user-plus" size={20} color="#FFF" />
-      </TouchableHighlight>
+          <Feather name="user-plus" size={30} color="#FFF" />
+      </TouchableOpacity>
     </>
   );
 };

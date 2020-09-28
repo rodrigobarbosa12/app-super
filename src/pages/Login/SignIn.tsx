@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
@@ -141,7 +141,7 @@ export default withFormik({
 
   validateOnChange: false,
 
-  handleSubmit: async (values, { setSubmitting, setErrors }) => {
+  handleSubmit: async (values, { setErrors }) => {
     try {
       const { data: { token, usuario } } = await api.login(values);
 
@@ -150,9 +150,7 @@ export default withFormik({
         [USER_STORAGE, JSON.stringify(usuario)],
       ]);
 
-      setSubmitting(false);
-
-      toRouteAuth(Actions.Home);
+      toRouteAuth('Home');
     } catch (error) {
       setErrors({ message: get(error, 'response.data.message', 'Algo deu errado, tento de novo mais tarde') });
     }

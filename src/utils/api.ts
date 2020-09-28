@@ -10,14 +10,17 @@ const deletar = async (rota: string) => xhr
 const login = (params: Object) => post('/login', params);
 const singUp = (params: Object) => post('/cadastro', params);
 
+/**GRUPOS */
 const novoGrupo = (params: Object) => post('/novo-grupo', params);
 const addUser = (params: Object) => post('/grupos/add-usuario', params);
 const getGrupos = (usuarioId: string) => get(`/grupos/${usuarioId}`);
-const removeGrupo = (itemId: string, usuariosId: string) => deletar(`/remove-grupo/${itemId}/${usuariosId}`);
+const removeGrupo = (gruposId: string, usuariosId: string) => deletar(`/remove-grupo/${gruposId}/${usuariosId}`);
+const sairDoGrupo = (gruposId: string, usuariosId: string) => deletar(`/sair-grupo/${gruposId}/${usuariosId}`);
 
+/**ITENS */
 const novoItem = (params: Object) => post('/novo-item', params);
-const getItens = (gruposId: string) => get(`/item/${gruposId}`);
-const removeIten = (grupoId: string) => deletar(`/remove-item/${grupoId}`);
+const getItens = (itemId: string) => get(`/item/${itemId}`);
+const removeIten = (itemId: string) => deletar(`/remove-item/${itemId}`);
 
 export default {
   login,
@@ -29,4 +32,5 @@ export default {
   getItens,
   removeGrupo,
   removeIten,
+  sairDoGrupo,
 };

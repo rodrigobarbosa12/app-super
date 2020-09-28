@@ -37,17 +37,6 @@ const Home = () => {
     }
   };
 
-  const sairDoGrupo = async () => {
-    // try {
-    //   const { id: usuariosId } = await identity();
-    //   await api.removeGrupo(grupoId, usuariosId);
-    //   await setGrupos(grupos.filter((grupo) => grupo.id !== grupoId));
-    //   setVisibilit(false);
-    // } catch (error) {
-    //   console.warn(error.response.data.message);
-    // }
-  };
-
   const alertRemoveGrupo = (gruposId: string) => {
     setGrupoId(gruposId);
     setVisibilit(true);

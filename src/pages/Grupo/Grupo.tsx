@@ -1,28 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Feather } from '@expo/vector-icons';
-import api from '../../utils/api';
 import StatusBar from '../../components/StatusBar';
 import WarningAlert from '../../components/WarningAlert';
 import { connect, disconnect, subscribeToNewItem } from '../../utils/socket';
+import toRouteAuth from '../../utils/to-route-auth';
+import identity from '../../utils/identity';
+import api from '../../utils/api';
 import Lista from './Lista';
 import styles from '../Home/styles';
 import { Item } from './type';
 import ModalAddUser from './ModalAddUser';
+import { Grupo } from '../Home/type';
 
 type Props = {
-  gruposId: string,
-  grupoNome: string,
+  grupo: Grupo,
 }
 
-const Grupo = ({ gruposId, grupoNome }: Props) => {
+const GrupoContainer = ({ grupo }: Props) => {
+  const [usuarioLogado, setUsuarioLogado] = useState<string>('');
   const [itens, setItens] = useState<Item[]>([]);
   const [visibilit, setVisibilit] = useState<boolean>(false);
+  const [visibilitExitGroup, setVisibilitExitGroup] = useState<boolean>(false);
   const [itemId, setItemId] = useState<string>('');
 
   const buscarItens = async () => {
     try {
-      const { data } = await api.getItens(gruposId);
+      const { data } = await api.getItens(grupo.id);
       setItens(data);
       setupWebsocket();
     } catch (error) {
@@ -40,6 +45,14 @@ const Grupo = ({ gruposId, grupoNome }: Props) => {
     }
   };
 
+  const sairDoGrupo = async () => {
+    try {
+      await api.sairDoGrupo(grupo.id, usuarioLogado);
+      toRouteAuth('Home');
+    } catch (error) {
+      console.warn('Deu ruim ao sair do grupo');
+    }
+  };
 
   const alertRemoveGrupo = (itemId: string) => {
     setItemId(itemId);
@@ -47,6 +60,11 @@ const Grupo = ({ gruposId, grupoNome }: Props) => {
   };
 
   useEffect(() => {
+    (async () => {
+      const { id } = await identity();
+      setUsuarioLogado(id);
+    })();
+
     buscarItens();
   }, []);
 
@@ -57,20 +75,35 @@ const Grupo = ({ gruposId, grupoNome }: Props) => {
   const setupWebsocket = () => {
       disconnect();
 
-      connect(gruposId);
+      connect(grupo.id);
+  }
+
+  const RenderOptionsHost = () => { 
+    if (usuarioLogado === grupo.host) {
+      return <ModalAddUser gruposId={grupo.id} />;
+    }
+
+    return (
+      <TouchableOpacity 
+        style={{ marginRight: 20 }}
+        onPress={() => setVisibilitExitGroup(true)}
+      >
+        <Feather name="user-x" size={30} color="#FFF" />
+      </TouchableOpacity>        
+    );
   }
 
   return (
     <>
       <View>
         <StatusBar>
-          <ModalAddUser gruposId={gruposId} />
+          <RenderOptionsHost />
         </StatusBar>
         <View style={styles.container}>
           <Lista
-            titulo={grupoNome}
+            titulo={grupo.nome}
             itens={itens}
-            gruposId={gruposId}
+            gruposId={grupo.id}
             buscarItens={buscarItens}
             alertRemoveGrupo={alertRemoveGrupo}
           />
@@ -87,8 +120,19 @@ const Grupo = ({ gruposId, grupoNome }: Props) => {
           cancelText="Depois"
           confirmText="Excluir"
       />
+      <WarningAlert
+        title="Atenção"
+        message="Deseja mesmo sair do grupo?"
+        show={visibilitExitGroup}
+        showConfirmButton
+        showCancelButton
+        onConfirm={sairDoGrupo}
+        onCalcel={() => setVisibilitExitGroup(false)}
+        cancelText="Ficar"
+        confirmText="Sair agora"
+    />
       </>
   );
 };
 
-export default Grupo;
+export default GrupoContainer;

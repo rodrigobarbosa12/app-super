@@ -10,19 +10,19 @@ type Props = {
 }
 
 const DropdownMenuItem = ({ alertRemoveGrupo, itemId }: Props) => {
-    let _menu: any = null;
+    let menu: any = null;
 
     const setMenuRef = (ref: any) => {
-      _menu = ref;
+      menu = ref;
     };
 
     const hideMenu = () => {
         alertRemoveGrupo(itemId);
-      _menu.hide();
+      menu.hide();
     };
 
     const showMenu = () => {
-      _menu.show();
+      menu.show();
     };
 
     return (
