@@ -70,7 +70,7 @@ const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) =
               placeholder="Qual o nome do grupo?"
               placeholderTextColor={errorInput ? colors.danger : '#999'}
               selectionColor={errorInput ? colors.danger : '#999'}
-              autoCorrect={false}
+              autoCorrect
               onChangeText={(nome) => setNome(nome.replace(/\s+/g, ' '))}
             />
 

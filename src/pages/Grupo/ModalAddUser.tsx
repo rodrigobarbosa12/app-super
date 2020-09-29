@@ -66,12 +66,12 @@ const ModalAddUser = ({ gruposId }: Props) => {
 
                 <TextInput
                   style={styles.inputText}
-                  keyboardType="email-address"
-                  defaultValue={email}
                   placeholder={'Qual o email do usuário?'}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  defaultValue={email}
                   placeholderTextColor={'#999'}
                   selectionColor={'#999'}
-                  autoCorrect={false}
                   onChangeText={(email) => setEmail(email)}
                 />
 

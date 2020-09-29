@@ -9,7 +9,7 @@ import moment from 'moment';
 import { Feather } from '@expo/vector-icons';
 import { Actions } from 'react-native-router-flux';
 import Divider from '../../components/Divider';
-import toRouteAuth from '../../utils/to-route-auth';
+import forAuthRoute from '../../utils/for-auth-route';
 import colors from '../../utils/colors';
 import styles from './styles';
 import { Grupo } from './type';
@@ -38,7 +38,7 @@ const CardGrupo = ({ grupo, alertRemoveGrupo, usuariosId }: Props) => (
 
     <TouchableOpacity
       style={styles.detailsButton}
-      onPress={() => toRouteAuth('Grupo', { grupo })}
+      onPress={() => forAuthRoute('Grupo', { grupo })}
     >
       <Text style={styles.detailsButtonText}>Ver itens</Text>
       <Feather name="arrow-right" size={16} color={colors.matteBlue} />

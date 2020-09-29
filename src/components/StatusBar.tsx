@@ -1,5 +1,5 @@
 import React from 'react';
-import toRouteAuth from '../utils/to-route-auth';
+import { forAuthRoutePop } from '../utils/for-auth-route';
 import { Appbar } from 'react-native-paper';
 import { themeDefault } from '../utils/colors';
 
@@ -13,7 +13,7 @@ const StatusBar = ({ title, subtitle, children }: Props) => (
   <Appbar.Header style={{ backgroundColor: themeDefault.purple }}>
     <Appbar.BackAction
       color="#FFF"
-      onPress={() => toRouteAuth('Home')}
+      onPress={() => forAuthRoutePop()}
     />
     <Appbar.Content
       title={title}

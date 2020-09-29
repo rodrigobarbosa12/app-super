@@ -5,7 +5,7 @@ import FadeInView from '../../components/FadeInView';
 import StatusBar from '../../components/StatusBar';
 import WarningAlert from '../../components/WarningAlert';
 import { connect, disconnect, subscribeToNewItem } from '../../utils/socket';
-import toRouteAuth from '../../utils/to-route-auth';
+import { forAuthRouteReset } from '../../utils/for-auth-route';
 import identity from '../../utils/identity';
 import api from '../../utils/api';
 import Lista from './Lista';
@@ -16,6 +16,7 @@ import { Grupo } from '../Home/type';
 
 type Props = {
   grupo: Grupo,
+  duration: number,
 }
 
 const GrupoContainer = ({ grupo }: Props) => {
@@ -48,7 +49,7 @@ const GrupoContainer = ({ grupo }: Props) => {
   const sairDoGrupo = async () => {
     try {
       await api.sairDoGrupo(grupo.id, usuarioLogado);
-      toRouteAuth('Home');
+      forAuthRouteReset('Home');
     } catch (error) {
       console.warn('Deu ruim ao sair do grupo');
     }
@@ -95,7 +96,7 @@ const GrupoContainer = ({ grupo }: Props) => {
 
   return (
     <>
-      <FadeInView>
+      <FadeInView duration={0}>
         <View>
           <StatusBar>
             <RenderOptionsHost />

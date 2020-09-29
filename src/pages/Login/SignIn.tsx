@@ -5,7 +5,7 @@ import {
   Text,
   AsyncStorage,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import FadeInView from '../../components/FadeInView';
 import get from 'lodash/get';
 import { withFormik } from 'formik';
 import * as yup from 'yup';
@@ -17,7 +17,7 @@ import Action from './Actions';
 import api from '../../utils/api';
 import LinkCadastroUsuario from './LinkCadastroUsuario';
 import LinkEsqueciSenha from './LinkEsqueciSenha';
-import toRouteAuth from '../../utils/to-route-auth';
+import { forAuthRouteReset } from '../../utils/for-auth-route';
 
 type Props = {
   handleSubmit: () => void,
@@ -73,14 +73,14 @@ const SignIn = ({
         Super
       </Text>
     </View>
-    <View>
+    <FadeInView>
       <TextInput
         style={styles.input}
         mode="outlined"
         placeholder="E-mail"
+        keyboardType="email-address"
         autoCapitalize="none"
         selectionColor="#000"
-        autoCorrect={false}
         error={!!errors.email}
         label={errors.email && errors.email}
         onChangeText={(email) => setFieldValue('email', email)}
@@ -91,7 +91,6 @@ const SignIn = ({
         placeholder="Senha"
         secureTextEntry
         selectionColor="#000"
-        autoCorrect={false}
         error={!!errors.senha}
         label={errors.senha && errors.senha}
         onChangeText={(password) => setFieldValue('senha', password)}
@@ -106,7 +105,7 @@ const SignIn = ({
       <View style={styles.cadastroUsuario}>
         <LinkEsqueciSenha />
       </View>
-    </View>
+    </FadeInView>
 
     <View style={styles.cadastroUsuario}>
       <LinkCadastroUsuario />
@@ -150,7 +149,7 @@ export default withFormik({
         [USER_STORAGE, JSON.stringify(usuario)],
       ]);
 
-      toRouteAuth('Home');
+      forAuthRouteReset('Home');
     } catch (error) {
       setErrors({ message: get(error, 'response.data.message', 'Algo deu errado, tento de novo mais tarde') });
     }

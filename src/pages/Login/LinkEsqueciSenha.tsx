@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import toRouteAuth from '../../utils/to-route-auth';
+import forAuthRoute from '../../utils/for-auth-route';
 
 const styles = StyleSheet.create({
   detailsButton: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 const LinkEsqueciSenha = () => (
   <TouchableOpacity
     style={styles.detailsButton}
-    onPress={() => toRouteAuth('Profile')}
+    onPress={() => forAuthRoute('Profile')}
   >
     <Text style={styles.detailsButtonText}>
       Esqueci minha senha

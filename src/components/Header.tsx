@@ -1,7 +1,7 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
-import AvatarProfile from './AvatarProfile';
+import DropdownMenuProfile from './DropdownMenuProfile';
 import { themeDefault } from '../utils/colors';
 
 const styles = StyleSheet.create({
@@ -32,7 +32,7 @@ const Header = () => (
         color="#FFF"
         onPress={() => console.log('Pressed label')}
       />
-      <AvatarProfile />
+      <DropdownMenuProfile />
     </Appbar>
   </Appbar.Header>
 );

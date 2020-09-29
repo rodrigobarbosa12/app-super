@@ -87,7 +87,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                 placeholder={errorInput ? 'Nome do item é obrigatório' : 'Nome do item'}
                 placeholderTextColor={errorInput ? colors.danger : '#999'}
                 selectionColor={errorInput ? colors.danger : '#999'}
-                autoCorrect={false}
+                autoCorrect
                 onChangeText={(nome) => setItem((s) => ({ ...s, nome: nome.replace(/\s+/g, ' ') }))}
               />
               <TextInput
@@ -95,7 +95,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                 placeholder="Observação"
                 placeholderTextColor="#999"
                 selectionColor="#999"
-                autoCorrect={false}
+                autoCorrect
                 onChangeText={(descricao) => setItem((s) => ({ ...s, descricao }))}
               />
 
@@ -111,7 +111,6 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                     keyboardType="numeric"
                     placeholderTextColor="#999"
                     selectionColor="#999"
-                    autoCorrect={false}
                     onChangeText={(quantidade) => setItem((s) => ({
                       ...s,
                       quantidade: quantidade.replace(/\,+/g, '')
@@ -123,7 +122,6 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                     keyboardType="numeric"
                     placeholderTextColor="#999"
                     selectionColor="#999"
-                    autoCorrect={false}
                     onChangeText={(valor) => setItem((s) => ({
                       ...s,
                       valor: valor.replace(',', '.')

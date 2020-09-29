@@ -62,7 +62,7 @@ const CadastroStudio = ({
         <TextInput
           style={styles.input}
           placeholder="* Nome"
-          autoCorrect={false}
+          autoCorrect
           error={!!errors.nome}
           label={errors.nome && errors.nome}
           onChangeText={(text) => setFieldValue('nome', text)}
@@ -70,8 +70,8 @@ const CadastroStudio = ({
         <TextInput
           style={styles.input}
           placeholder="* E-mail"
+          keyboardType="email-address"
           autoCapitalize="none"
-          autoCorrect={false}
           error={!!errors.email}
           label={errors.email && errors.email}
           onChangeText={(text) => setFieldValue('email', text)}
@@ -80,7 +80,6 @@ const CadastroStudio = ({
           style={styles.input}
           placeholder="* Senha"
           secureTextEntry
-          autoCorrect={false}
           error={!!errors.senha}
           label={errors.senha && errors.senha}
           onChangeText={(text) => setFieldValue('senha', text)}
