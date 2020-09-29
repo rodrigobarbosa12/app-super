@@ -9,6 +9,18 @@ const subscribeToNewItem = (subscribeFunction) => {
   socket.on('novo item', subscribeFunction);
 };
 
+const subscribeToNotification = (subscribeFunction) => {
+  socket.on('solicitation-group', subscribeFunction);
+};
+
+const connectUser = (usuariosId: string) => {
+  socket.io.opts.query = {
+    usuariosId
+  };
+
+  socket.connect();
+};
+
 const connect = (gruposId: string) => {
   socket.io.opts.query = {
       gruposId
@@ -24,7 +36,9 @@ const disconnect = () => {
 };
 
 export {
+  connectUser,
   connect,
   disconnect,
   subscribeToNewItem,
+  subscribeToNotification,
 };
