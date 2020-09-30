@@ -53,7 +53,7 @@ export default StyleSheet.create({
     padding: 24,
     borderRadius: 8,
     shadowColor: '9px 7px 5px  10px rgba(50, 50, 50, 0.77)',
-    backgroundColor: '#FFF',
+    backgroundColor: '#f5f5f5',
     marginBottom: 16,
   },
   cardGrupoName: {
