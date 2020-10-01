@@ -10,7 +10,7 @@ import get from 'lodash/get';
 import { withFormik } from 'formik';
 import * as yup from 'yup';
 import { TextInput } from 'react-native-paper';
-import { connectUser } from '../../utils/socket';
+// import { connectUser } from '../../utils/socket';
 import { TOKEN_STORAGE, USER_STORAGE } from '../../utils/constants';
 import AlertWait from '../../components/AlertWait';
 import WarningAlert from '../../components/WarningAlert';
@@ -150,7 +150,7 @@ export default withFormik({
         [USER_STORAGE, JSON.stringify(usuario)],
       ]);
 
-      connectUser(usuario.id);
+      // connectUser(usuario.id);
       forAuthRouteReset('Home');
     } catch (error) {
       setErrors({ message: get(error, 'response.data.message', 'Algo deu errado, tento de novo mais tarde') });

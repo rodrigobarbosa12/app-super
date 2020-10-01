@@ -42,15 +42,12 @@ const Lista = ({ grupos, buscarGrupos, alertRemoveGrupo, usuariosId }: Props) =>
       : <AnimatedFlatList
           data={grupos}
           scrollEventThrottle={10}
-          // bounces={false}
-          // showsVerticalScrollIndicator={false}
-          // fadingEdgeLength={10}
           onEndReachedThreshold={0.2}
           style={styles.itemsList}
-          keyExtractor={(item) => String(item.id)}
+          keyExtractor={(item: Grupo) => String(item.id)}
           initialNumToRender={1}
           {...{onScroll}}
-          renderItem={({ item, index }) =>
+          renderItem={({ item, index }: { item: Grupo, index: number }) =>
             <CardGrupo
               grupo={item}
               index={index}

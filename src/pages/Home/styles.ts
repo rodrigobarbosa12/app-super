@@ -3,7 +3,7 @@ import colors from '../../utils/colors';
 
 export default StyleSheet.create({
   container: {
-    // backgroundColor: '#f8f9fa',
+    // backgroundColor: '#c9c7b2',
     paddingBottom: 700,
   },
   header: {
@@ -20,14 +20,14 @@ export default StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    marginBottom: 16,
-    marginTop: 48,
+    marginBottom: 10,
+    marginTop: 15,
     color: '#13131a',
     fontWeight: 'bold',
   },
   description: {
     fontSize: 15,
-    lineHeight: 24,
+    // lineHeight: 24,
     color: '#737380',
   },
   empty: {
@@ -39,8 +39,9 @@ export default StyleSheet.create({
   itemsList: {
     marginTop: 10,
     padding: 15,
+    marginBottom: 50,
     height: Dimensions.get('window').height,
-    maxHeight: 460,
+    maxHeight: 495,
   },
   item: {
     shadowOffset: {
@@ -53,7 +54,7 @@ export default StyleSheet.create({
     padding: 24,
     borderRadius: 8,
     shadowColor: '9px 7px 5px  10px rgba(50, 50, 50, 0.77)',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#daebf1',
     marginBottom: 16,
   },
   cardGrupoName: {

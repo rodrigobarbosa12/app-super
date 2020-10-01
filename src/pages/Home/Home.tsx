@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
+import { connectUser, disconnect, subscribeToNotification } from '../../utils/socket';
 import FadeInView from '../../components/FadeInView';
 import Header from '../../components/Header';
 import FloatingButton from '../../components/FloatingButton';
@@ -11,15 +12,18 @@ import styles from './styles';
 import { Grupo } from './type';
 
 const Home = () => {
+  const [usuarioLogado, setUsuarioLogado] = useState<string>('');
+  const [notificacao, setNotificacao] = useState<string[]>([]);
   const [grupos, setGrupos] = useState<Grupo[]>([]);
   const [visibilit, setVisibilit] = useState<boolean>(false);
   const [grupoId, setGrupoId] = useState<string>('');
-  const [usuariosId, setUsuariosId] = useState<string>('');
+  // const [usuariosId, setUsuariosId] = useState<string>('');
 
   const buscarGrupos = async () => {
     try {
       const { id } = await identity();
-      setUsuariosId(id);
+      setUsuarioLogado(id);
+      setupWebsocket(id);
       const { data } = await api.getGrupos(id);
       setGrupos(data);
     } catch (error) {
@@ -47,6 +51,18 @@ const Home = () => {
     buscarGrupos();
   }, []);
 
+  useEffect(() => {
+    subscribeToNotification((algo: any) => {
+      console.warn('Notificação');
+      setNotificacao([algo]);
+    });
+  }, [notificacao]);
+
+  const setupWebsocket = (usuariosId: string) => {
+    disconnect();
+
+    connectUser(usuariosId);
+  }
   return (
     <>
       <FadeInView>
@@ -57,7 +73,7 @@ const Home = () => {
               grupos={grupos}
               buscarGrupos={buscarGrupos}
               alertRemoveGrupo={alertRemoveGrupo}
-              usuariosId={usuariosId}
+              usuariosId={usuarioLogado}
             />
           </View>
         </View>
