@@ -3,19 +3,25 @@ import React from 'react';
 import {
   Text,
   View,
+  Animated,
 } from 'react-native';
 import moment from 'moment';
 import DropdownMenuItem from './DropdownMenuItem';
+import ScrollAnimatedView from '../../components/ScrollAnimatedView';
 import styles from '../Home/styles';
 import { Item } from './type';
+import { mascaraDinheiro } from '../../utils/mascara-dinheiro';
 
 type Props = {
+  lastElement: boolean,
+  index: number,
+  y: Animated.Value,
   item: Item,
   alertRemoveGrupo: (itemId: string) => void
 }
 
-const CardItem = ({ item, alertRemoveGrupo }: Props) => (
-  <View style={styles.item}>
+const CardItem = ({ lastElement, item, alertRemoveGrupo, index, y }: Props) => (
+  <ScrollAnimatedView style={lastElement ? styles.lastItem : styles.item} index={index} y={y}>
     <Text style={styles.cardGrupoDate}>{moment(item.data).format('DD/MM/YYYY H:mm')}</Text>
     <View style={styles.buttonTrash}>
       <DropdownMenuItem
@@ -56,16 +62,14 @@ const CardItem = ({ item, alertRemoveGrupo }: Props) => (
             </Text>
             <Text style={styles.itemValueRow}>
               {
-                Intl
-                  .NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
-                  .format(item.valor)
+                mascaraDinheiro(String(item.valor))
               }
             </Text>
           </>
         : null
       }
     </View>
-  </View>
+  </ScrollAnimatedView>
 );
 
 export default CardItem;

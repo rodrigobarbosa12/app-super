@@ -37,13 +37,15 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   itemsList: {
-    marginTop: 10,
-    padding: 15,
-    marginBottom: 50,
+    // marginTop: 500,
+    // marginBottom: 50,
+
     height: Dimensions.get('window').height,
-    maxHeight: 495,
+    // maxHeight: 495,
   },
   item: {
+    marginTop: 10,
+    marginHorizontal: 15,
     shadowOffset: {
       width: 6,
       height: 6,
@@ -54,8 +56,24 @@ export default StyleSheet.create({
     padding: 24,
     borderRadius: 8,
     shadowColor: '9px 7px 5px  10px rgba(50, 50, 50, 0.77)',
-    backgroundColor: '#daebf1',
-    marginBottom: 16,
+    backgroundColor: '#f2fafd',
+    marginBottom: 9,
+  },
+  lastItem: {
+    marginTop: 10,
+    marginHorizontal: 15,
+    shadowOffset: {
+      width: 6,
+      height: 6,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    padding: 24,
+    borderRadius: 8,
+    shadowColor: '9px 7px 5px  10px rgba(50, 50, 50, 0.77)',
+    backgroundColor: '#f2fafd',
+    marginBottom: 280,
   },
   cardGrupoName: {
     fontSize: 20,

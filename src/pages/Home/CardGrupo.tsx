@@ -5,7 +5,6 @@ import {
   View,
   TouchableOpacity,
   Animated,
-  // Dimensions,
 } from 'react-native';
 import moment from 'moment';
 import { Feather } from '@expo/vector-icons';
@@ -17,6 +16,7 @@ import styles from './styles';
 import { Grupo } from './type';
 
 type Props = {
+  lastElement: boolean,
   index: number,
   y: Animated.Value,
   grupo: Grupo,
@@ -24,8 +24,8 @@ type Props = {
   usuariosId: string,
 };
 
-const CardGrupo = ({ grupo, alertRemoveGrupo, usuariosId, index, y }: Props) => (
-  <ScrollAnimatedView style={styles.item} index={index} y={y}>
+const CardGrupo = ({ lastElement, grupo, alertRemoveGrupo, usuariosId, index, y }: Props) => (
+  <ScrollAnimatedView style={lastElement ? styles.lastItem : styles.item} index={index} y={y}>
     <>
       <Text style={styles.cardGrupoDate}>{moment(grupo.data).format('DD/MM/YYYY H:mm')}</Text>
       <View style={styles.buttonTrash}>

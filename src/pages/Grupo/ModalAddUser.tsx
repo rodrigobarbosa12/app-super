@@ -21,12 +21,12 @@ type Props = {
 const ModalAddUser = ({ gruposId }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [email, setEmail] = useState < string > ('vitoria@gmail.com');
+  const [email, setEmail] = useState < string > ('');
 
   const resetConfig = () => {
     setModalVisible(!modalVisible);
     setErrorMessage('');
-    setEmail('vitoria@gmail.com');
+    setEmail('');
   }
 
   const adicionarUser = async () => {

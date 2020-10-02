@@ -3,6 +3,7 @@ import {
   Text,
   FlatList,
   View,
+  Animated,
 } from 'react-native';
 import Lottie from 'lottie-react-native';
 import empty from '../../animations/empty.json';
@@ -19,13 +20,19 @@ type Props = {
   alertRemoveGrupo: (itemId: string) => void,
 }
 
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+
 const Lista = ({
   titulo,
   itens,
   gruposId,
   buscarItens,
   alertRemoveGrupo,
-}: Props) => (
+}: Props) => {
+  const y = new Animated.Value(0);
+  const onScroll = Animated.event([{ nativeEvent: { contentOffset: { y } } }], { useNativeDriver: true });
+
+  return (
     <>
       <View style={{paddingHorizontal: 32}}>
         <View style={{
@@ -53,17 +60,28 @@ const Lista = ({
               autoPlay
             />
           </View>
-         : <FlatList
-            style={styles.itemsList}
-            data={itens}
-            keyExtractor={(item) => String(item.id)}
+         : <AnimatedFlatList
             showsVerticalScrollIndicator={false}
-            onEndReached={buscarItens}
-            onEndReachedThreshold={0.5}
-            renderItem={({ item }) => <CardItem item={item} alertRemoveGrupo={alertRemoveGrupo} />}
+            scrollEventThrottle={10}
+            onEndReachedThreshold={0.2}
+            style={styles.itemsList}
+            initialNumToRender={1}
+            {...{onScroll}}
+            data={itens}
+            keyExtractor={(item: Item) => String(item.id)}
+            renderItem={({ item, index }: { item: Item, index: number}) =>
+              <CardItem
+                lastElement={(index === itens.length - 1) ? true : false}
+                index={index}
+                y={y}
+                item={item}
+                alertRemoveGrupo={alertRemoveGrupo}
+              />
+            }
           />
         }
     </>
   );
+}
 
 export default Lista;
