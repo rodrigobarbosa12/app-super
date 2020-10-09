@@ -72,8 +72,6 @@ const Lista = ({
             renderItem={({ item, index }: { item: Item, index: number}) =>
               <CardItem
                 lastElement={(index === itens.length - 1) ? true : false}
-                index={index}
-                y={y}
                 item={item}
                 alertRemoveGrupo={alertRemoveGrupo}
               />

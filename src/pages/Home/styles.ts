@@ -73,7 +73,7 @@ export default StyleSheet.create({
     borderRadius: 8,
     shadowColor: '9px 7px 5px  10px rgba(50, 50, 50, 0.77)',
     backgroundColor: '#f2fafd',
-    marginBottom: 280,
+    marginBottom: 240,
   },
   cardGrupoName: {
     fontSize: 20,

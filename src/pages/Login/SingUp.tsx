@@ -163,6 +163,7 @@ export default withFormik({
     email: '',
     senha: '',
     nascimento: '',
+    sexo: 'M',
   }),
 
   validationSchema: yup.object().shape({

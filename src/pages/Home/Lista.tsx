@@ -52,8 +52,6 @@ const Lista = ({ grupos, buscarGrupos, alertRemoveGrupo, usuariosId }: Props) =>
             <CardGrupo
               lastElement={(index === grupos.length - 1) ? true : false}
               grupo={item}
-              index={index}
-              y={y}
               alertRemoveGrupo={alertRemoveGrupo}
               usuariosId={usuariosId}
               />

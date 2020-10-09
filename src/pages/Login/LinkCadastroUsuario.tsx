@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   detailsButtonText: {
     color: '#FFF',
     fontSize: 19,
-    fontWeight: 'bold',
+    fontFamily: 'Arial Rounded MT Bold',
   },
 });
 

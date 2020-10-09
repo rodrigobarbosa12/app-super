@@ -54,6 +54,7 @@ const Home = () => {
   useEffect(() => {
     subscribeToNotification((algo: any) => {
       console.warn('Notificação');
+      buscarGrupos();
       setNotificacao([algo]);
     });
   }, [notificacao]);

@@ -3,25 +3,21 @@ import React from 'react';
 import {
   Text,
   View,
-  Animated,
 } from 'react-native';
 import moment from 'moment';
 import DropdownMenuItem from './DropdownMenuItem';
-import ScrollAnimatedView from '../../components/ScrollAnimatedView';
 import styles from '../Home/styles';
 import { Item } from './type';
 import { mascaraDinheiro } from '../../utils/mascara-dinheiro';
 
 type Props = {
   lastElement: boolean,
-  index: number,
-  y: Animated.Value,
   item: Item,
   alertRemoveGrupo: (itemId: string) => void
 }
 
-const CardItem = ({ lastElement, item, alertRemoveGrupo, index, y }: Props) => (
-  <ScrollAnimatedView style={lastElement ? styles.lastItem : styles.item} index={index} y={y}>
+const CardItem = ({ lastElement, item, alertRemoveGrupo }: Props) => (
+  <View style={lastElement ? styles.lastItem : styles.item}>
     <Text style={styles.cardGrupoDate}>{moment(item.data).format('DD/MM/YYYY H:mm')}</Text>
     <View style={styles.buttonTrash}>
       <DropdownMenuItem
@@ -69,7 +65,7 @@ const CardItem = ({ lastElement, item, alertRemoveGrupo, index, y }: Props) => (
         : null
       }
     </View>
-  </ScrollAnimatedView>
+  </View>
 );
 
 export default CardItem;

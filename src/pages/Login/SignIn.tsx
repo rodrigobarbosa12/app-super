@@ -66,9 +66,9 @@ const SignIn = ({
   <>
     <View style={styles.title}>
       <Text style={{
-        fontSize: 45,
+        fontFamily: 'Arial Rounded MT Bold',
+        fontSize: 75,
         color: '#FFF',
-        fontWeight: 'bold',
       }}
       >
         Super

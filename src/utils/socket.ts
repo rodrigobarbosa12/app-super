@@ -6,10 +6,11 @@ const socket = socketio(API_SUPER, {
 });
 
 const subscribeToNewItem = (subscribeFunction) => {
-  socket.on('novo item', subscribeFunction);
+  socket.on('novo-item', subscribeFunction);
 };
 
 const subscribeToNotification = (subscribeFunction) => {
+  console.warn('epa');
   socket.on('solicitation-group', subscribeFunction);
 };
 
