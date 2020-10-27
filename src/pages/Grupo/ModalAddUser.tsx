@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from './stylesModal';
+import styleGlobal from '../styles';
 import api from '../../utils/api';
 import colors from '../../utils/colors';
 
@@ -64,7 +65,7 @@ const ModalAddUser = ({ gruposId }: Props) => {
                 <Text style={styles.modalText}>Adicionar membro ao grupo</Text>
 
                 <TextInput
-                  style={styles.inputText}
+                  style={styleGlobal.input}
                   placeholder={'Qual o email do usuário?'}
                   keyboardType="email-address"
                   autoCapitalize="none"

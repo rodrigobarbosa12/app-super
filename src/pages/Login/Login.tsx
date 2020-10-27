@@ -8,6 +8,8 @@ import SignIn from './SignIn';
 
 const styles = StyleSheet.create({
   container: {
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-around',
@@ -17,11 +19,18 @@ const styles = StyleSheet.create({
 
 
 const Login = () => (
-  <View
-    style={styles.container}
-  >
-    <SignIn />
-  </View>
+  <>
+    <View style={{
+      height: 60,
+      backgroundColor: '#FFF'
+    }} />
+
+    <View
+      style={styles.container}
+    >
+      <SignIn />
+    </View>
+  </>
 );
 
 export default Login;

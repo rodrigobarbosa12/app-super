@@ -6,7 +6,7 @@ const socket = socketio(API_SUPER, {
 });
 
 const subscribeToNewItem = (subscribeFunction) => {
-  socket.on('novo-item', subscribeFunction);
+  socket.on('new-item', subscribeFunction);
 };
 
 const subscribeToNotification = (subscribeFunction) => {

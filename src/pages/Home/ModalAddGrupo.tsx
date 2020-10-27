@@ -7,11 +7,12 @@ import {
   View,
   TextInput,
 } from 'react-native';
+import get from 'lodash/get';
+import styleGlobal from '../styles';
 import styles from '../Grupo/stylesModal';
 import colors from '../../utils/colors';
 import api from '../../utils/api';
 import identity from '../../utils/identity';
-import get from 'lodash/get';
 
 type Props = {
     buscarGrupos: () => void,
@@ -65,7 +66,7 @@ const ModalAddGrupo = ({ buscarGrupos, modalVisible, setModalVisible }: Props) =
             <Text style={styles.modalText}>Novo grupo</Text>
 
             <TextInput
-              style={styles.inputText}
+              style={styleGlobal.input}
               defaultValue={nome}
               placeholder="Qual o nome do grupo?"
               placeholderTextColor={errorInput ? colors.danger : '#999'}

@@ -8,13 +8,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 22,
   },
-  inputText: {
-    margin: 10,
-    borderRadius: 5,
-    padding: 10,
-    width: 220,
-    backgroundColor: '#fff',
-  },
   inputNumber: {
     margin: 10,
     borderRadius: 5,

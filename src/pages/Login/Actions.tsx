@@ -11,10 +11,11 @@ type Props = {
 
 const styles = StyleSheet.create({
   button: {
-    padding: 15,
+    marginTop: 15,
     justifyContent: 'center',
-    borderRadius: 5,
-    width: 320,
+    width: 327,
+    height: 56,
+    borderRadius: 20,
     alignItems: 'center',
     backgroundColor: '#fff',
   },

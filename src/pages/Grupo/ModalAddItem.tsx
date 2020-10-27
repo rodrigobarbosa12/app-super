@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from './stylesModal';
+import styleGlobal from '../styles';
 import colors from '../../utils/colors';
 import api from '../../utils/api';
 
@@ -82,7 +83,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
               <Text style={styles.modalText}>Criar novo item</Text>
 
               <TextInput
-                style={styles.inputText}
+                style={styleGlobal.input}
                 defaultValue={item.nome}
                 placeholder={errorInput ? 'Nome do item é obrigatório' : 'Nome do item'}
                 placeholderTextColor={errorInput ? colors.danger : '#999'}
@@ -91,7 +92,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                 onChangeText={(nome) => setItem((s) => ({ ...s, nome: nome.replace(/\s+/g, ' ') }))}
               />
               <TextInput
-                style={styles.inputText}
+                style={styleGlobal.input}
                 placeholder="Observação"
                 placeholderTextColor="#999"
                 selectionColor="#999"
@@ -106,7 +107,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                 }}
                 >
                   <TextInput
-                    style={styles.inputNumber}
+                    style={styleGlobal.inputNumber}
                     placeholder="Quantidade"
                     keyboardType="numeric"
                     placeholderTextColor="#999"
@@ -117,7 +118,7 @@ const ModalAddItem = ({ gruposId, buscarItens }: Props) => {
                     }))}
                   />
                   <TextInput
-                    style={styles.inputNumber}
+                    style={styleGlobal.inputNumber}
                     placeholder="Valor"
                     keyboardType="numeric"
                     placeholderTextColor="#999"
