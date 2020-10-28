@@ -5,11 +5,11 @@ const socket = socketio(API_SUPER, {
   autoConnect: false,
 });
 
-const subscribeToNewItem = (subscribeFunction) => {
+const subscribeToNewItem = (subscribeFunction: Function) => {
   socket.on('new-item', subscribeFunction);
 };
 
-const subscribeToNotification = (subscribeFunction) => {
+const subscribeToNotification = (subscribeFunction: Function) => {
   console.warn('epa');
   socket.on('solicitation-group', subscribeFunction);
 };
