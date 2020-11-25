@@ -22,6 +22,15 @@ const styleGlobal = StyleSheet.create({
     borderColor: '#D3E2E6',
     borderRadius: 20
   },
+  inputDatePicker: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    paddingLeft: 15,
+    width: 327,
+    height: 56,
+    backgroundColor: '#FFF',
+    borderRadius: 20
+  },
   inputNumber: {
     margin: 10,
     marginBottom: 10,
@@ -32,6 +41,15 @@ const styleGlobal = StyleSheet.create({
     backgroundColor: '#FFF',
     borderColor: '#D3E2E6',
     borderRadius: 20
+  },
+  button: {
+    marginTop: 15,
+    justifyContent: 'center',
+    width: 327,
+    height: 56,
+    borderRadius: 20,
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
 });
 

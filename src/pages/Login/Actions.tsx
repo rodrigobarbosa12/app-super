@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import styleGlobal from '../styles';
 
 Icon.loadFont();
 
@@ -10,15 +11,6 @@ type Props = {
 };
 
 const styles = StyleSheet.create({
-  button: {
-    marginTop: 15,
-    justifyContent: 'center',
-    width: 327,
-    height: 56,
-    borderRadius: 20,
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
   text: {
     fontSize: 15,
     color: '#7059c1',
@@ -30,7 +22,7 @@ const Actions = ({ handleSubmit }: Props) => (
   <View>
     <TouchableOpacity
       onPress={handleSubmit}
-      style={styles.button}
+      style={styleGlobal.button}
     >
       <Text style={styles.text}>Entrar</Text>
     </TouchableOpacity>

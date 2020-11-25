@@ -3,17 +3,21 @@ import moment from 'moment';
 import {
   StyleSheet,
   View,
+  Text,
+  TextInput,
 } from 'react-native';
 import DatePicker from 'react-native-datepicker'
 import { Actions } from 'react-native-router-flux';
 import { withFormik } from 'formik';
 import * as yup from 'yup';
 import get from 'lodash/get';
-import { TextInput, Button } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import StatusBar from '../../components/StatusBar';
 import AlertWait from '../../components/AlertWait';
 import WarningAlert from '../../components/WarningAlert';
 import { themeDefault } from '../../utils/colors';
+import styleGlobal from '../styles';
+import colors from '../../utils/colors';
 import api from '../../utils/api';
 
 type Props = {
@@ -25,6 +29,7 @@ type Props = {
       nome: string,
       email: string,
       senha: string,
+      confirmarSenha: string,
       nascimento: string,
       message: string
     },
@@ -35,15 +40,20 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-around',
-    marginLeft: 30,
-    marginRight: 30,
+    alignItems: 'center',
+    backgroundColor: themeDefault.purple,
   },
   input: {
     backgroundColor: 'transparent',
   },
   button: {
-    backgroundColor: themeDefault.purple,
+    backgroundColor: '#FFF',
   },
+  text: {
+    fontSize: 15,
+    color: '#7059c1',
+    fontWeight: 'bold',
+  }
 });
 
 const CadastroStudio = ({
@@ -59,37 +69,49 @@ const CadastroStudio = ({
     <>
       <StatusBar title="Cadastro" />
       <View style={styles.container}>
+
         <TextInput
-          style={styles.input}
-          placeholder="* Nome"
-          autoCorrect
-          error={!!errors.nome}
-          label={errors.nome && errors.nome}
-          onChangeText={(text) => setFieldValue('nome', text)}
+          style={styleGlobal.inputLogin}
+          keyboardType="default"
+          autoCapitalize="none"
+          placeholder={!!errors.nome ? errors.nome : '* Nome'}
+          placeholderTextColor={!!errors.nome ? colors.danger : '#999'}
+          selectionColor={!!errors.nome ? colors.danger : '#999'}
+          onChangeText={(nome) => setFieldValue('nome', nome)}
         />
+
         <TextInput
-          style={styles.input}
-          placeholder="* E-mail"
+          style={styleGlobal.inputLogin}
           keyboardType="email-address"
           autoCapitalize="none"
-          error={!!errors.email}
-          label={errors.email && errors.email}
-          onChangeText={(text) => setFieldValue('email', text)}
+          placeholder={!!errors.email ? errors.email : '* E-mail'}
+          placeholderTextColor={!!errors.email ? colors.danger : '#999'}
+          selectionColor={!!errors.email ? colors.danger : '#999'}
+          onChangeText={(email) => setFieldValue('email', email)}
         />
+
         <TextInput
-          style={styles.input}
-          placeholder="* Senha"
+          style={styleGlobal.inputLogin}
+          keyboardType="default"
           secureTextEntry
-          error={!!errors.senha}
-          label={errors.senha && errors.senha}
-          onChangeText={(text) => setFieldValue('senha', text)}
+          placeholder={!!errors.senha ? errors.senha : '* Senha'}
+          placeholderTextColor={!!errors.senha ? colors.danger : '#999'}
+          selectionColor={!!errors.senha ? colors.danger : '#999'}
+          onChangeText={(senha) => setFieldValue('senha', senha)}
+        />
+
+        <TextInput
+          style={styleGlobal.inputLogin}
+          keyboardType="default"
+          secureTextEntry
+          placeholder={!!errors.confirmarSenha ? errors.confirmarSenha : '* Confirmar senha'}
+          placeholderTextColor={!!errors.confirmarSenha ? colors.danger : '#999'}
+          selectionColor={!!errors.confirmarSenha ? colors.danger : '#999'}
+          onChangeText={(confirmarSenha) => setFieldValue('confirmarSenha', confirmarSenha)}
         />
 
         <DatePicker
-          style={{
-            borderColor: 'transparent',
-            width: 350
-          }}
+          style={styleGlobal.inputDatePicker}
           date={nascimento}
           mode="date"
           placeholder={!!errors.nascimento ? errors.nascimento : '* Nascimento'}
@@ -100,16 +122,18 @@ const CadastroStudio = ({
           cancelBtnText="Cancelar"
           customStyles={{
             dateIcon: {
-              position: 'absolute',
-              left: 0,
-              top: 4,
+              right: 10,
               marginLeft: 0
             },
             dateInput: {
               borderWidth: 0,
               borderBottomColor: !!errors.nascimento ? 'red' : '',
-              borderBottomWidth: 1,
-              marginLeft: 36
+              marginLeft: 1,
+            },
+            placeholderText: {
+              color: !!errors.nascimento ? colors.danger : '#999',
+              right: !!errors.nascimento ? 51 : 95,
+              // left: 0
             }
           }}
           onDateChange={(data: string) => {
@@ -117,13 +141,12 @@ const CadastroStudio = ({
             setFieldValue('nascimento', moment(data).format('Y-MM-DD'));
           }}
         />
-        <Button
-          style={styles.button}
-          mode="contained"
+        <TouchableOpacity
+          style={styleGlobal.button}
           onPress={handleSubmit}
         >
-          Cadastrar
-        </Button>
+          <Text style={styles.text}>Cadastrar</Text>
+        </TouchableOpacity>
       </View>
 
       <WarningAlert
@@ -167,11 +190,29 @@ export default withFormik({
   }),
 
   validationSchema: yup.object().shape({
-    nome: yup.string().required('* Nome é obrigatório'),
-    email: yup.string().email('Email inválido').required('* Email é obrigatório'),
-    senha: yup.string()
+    nome: yup
+      .string()
+      .required('* Nome é obrigatório'),
+
+    email: yup
+      .string()
+      .email('Email inválido')
+      .required('* Email é obrigatório'),
+
+    senha: yup
+      .string()
+      .required('* Senha é obrigatória')
       .min(8, '* Deve possuír no mínimo 8 caracteres'),
-    nascimento: yup.string().required('* Nascimento é obrigatório'),
+
+    confirmarSenha: yup
+    .string()
+    .required('* Por favor confirme sua senha')
+    .min(8, '* Deve possuír no mínimo 8 caracteres'),
+
+    nascimento: yup
+      .string()
+      .required('* Nascimento é obrigatório'),
+
   }),
 
   validateOnChange: false,
