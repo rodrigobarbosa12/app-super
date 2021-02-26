@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import { YellowBox } from 'react-native';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import Routes from './src/Routes';
-
-YellowBox.ignoreWarnings([
-  'Unrecognized WebSocket',
-]);
 
 const fetchFonts = () => {
   return Font.loadAsync ({
