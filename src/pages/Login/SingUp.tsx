@@ -65,6 +65,7 @@ const CadastroStudio = ({
   errors,
 }: Props) => {
   const [nascimento, setNascimento] = useState<string>('');
+
   return (
     <>
       <StatusBar title="Cadastro" />
@@ -122,7 +123,7 @@ const CadastroStudio = ({
           cancelBtnText="Cancelar"
           customStyles={{
             dateIcon: {
-              right: 10,
+              right: 1,
               marginLeft: 0
             },
             dateInput: {

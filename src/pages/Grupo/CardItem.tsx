@@ -58,7 +58,7 @@ const CardItem = ({ lastElement, item, alertRemoveGrupo }: Props) => (
             </Text>
             <Text style={styles.itemValueRow}>
               {
-                mascaraDinheiro(String(item.valor))
+                mascaraDinheiro(item.valor)
               }
             </Text>
           </>
